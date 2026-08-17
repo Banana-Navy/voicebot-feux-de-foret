@@ -1,10 +1,10 @@
 # Voicebot Feux de Forêt — Belgique
 
-Socle de conception et landing page pour un assistant vocal multilingue d'information et d'orientation face aux feux de forêt et de végétation.
+Socle de conception et landing page pour un assistant vocal **inbound** multilingue d'information et d'orientation face aux feux de forêt et de végétation. La population appelle volontairement le 1771, pose ses questions librement et reçoit des réponses fondées sur des sources officielles.
 
 Le bot est une couche complémentaire aux autorités. Il ne remplace ni le 112, ni BE-Alert, ni les services de secours. Tant que l'agent vocal de test n'est pas configuré, la page présente le parcours et les consignes sans simuler un appel opérationnel.
 
-Numéro d'accès prévu au voicebot : **1771**. Numéro d'urgence officiel : **112**.
+Numéro d'accès au voicebot inbound : **1771**. Numéro d'urgence officiel : **112**. Le projet n'est pas conçu comme une campagne d'appels sortants.
 
 ## Démarrer
 

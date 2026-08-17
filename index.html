@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <aside class="emergency"><strong>1771 : information et orientation</strong> · Danger immédiat, feu ou fumée proche ? Appelez le <a href="tel:112">112</a>.</aside>
+    <aside class="emergency"><strong>Appelez le 1771 pour vos questions</strong> · Danger immédiat, feu ou fumée proche ? Appelez le <a href="tel:112">112</a>.</aside>
     <header>
       <a class="brand" href="#accueil"><span>▲</span> WILDFIRE VOICE</a>
       <nav><a href="#mission">Mission</a><a href="#reflexes">Bons réflexes</a><a href="#sources">Sources</a></nav>
@@ -20,14 +20,14 @@
     <main id="accueil">
       <section class="hero">
         <div>
-          <p class="eyebrow">Assistant vocal belge · FR · NL · DE · EN</p>
-          <h1>La bonne consigne,<br /><em>au bon moment.</em></h1>
-          <p class="lead">Le 1771 aide la population à prévenir, signaler et traverser un feu de forêt sans se substituer au 112 ni aux autorités.</p>
-          <div class="actions"><button class="primary call-trigger">Découvrir le 1771</button><a href="#reflexes">Voir les consignes officielles</a></div>
+          <p class="eyebrow">Voicebot inbound belge · FR · NL · DE · EN</p>
+          <h1>Une question ?<br /><em>Appelez le 1771.</em></h1>
+          <p class="lead">La population appelle le 1771 et pose librement ses questions sur les feux de forêt : prévention, fumées, évacuation, personnes vulnérables, animaux ou retour à la normale.</p>
+          <div class="actions"><a class="primary" href="tel:1771">Appeler le 1771</a><button class="call-trigger">Tester dans le navigateur</button></div>
         </div>
         <div class="signal" aria-label="Triage de sécurité"><span>01</span><strong>Urgence détectée</strong><i></i><span>02</span><strong>Consigne 112</strong><i></i><span>03</span><strong>Orientation sûre</strong></div>
       </section>
-      <section class="statement" id="mission"><p class="eyebrow">1771 · Une interface simple sous pression</p><h2>Le bot commence par savoir où vous êtes.</h2><p>Dans la forêt, il faut s'éloigner immédiatement. Chez soi à proximité, il faut fermer portes et fenêtres et attendre l'instruction officielle avant d'évacuer. Cette distinction structure toute la conversation.</p></section>
+      <section class="statement" id="mission"><p class="eyebrow">Un service inbound, disponible à la demande</p><h2>Vous posez la question. Le 1771 vous répond.</h2><p>Pas de menu complexe : l'appelant parle naturellement et peut poser des questions de suivi. Le bot répond depuis des sources officielles et vérifie en permanence si la situation nécessite plutôt le 112.</p></section>
       <section id="reflexes" class="cards">
         <article><b>Dans la nature</b><h3>Éloignez-vous du feu et de la fumée.</h3><p>Suivez les chemins existants vers une route, une grande zone pavée ou une agglomération. Appelez le 112 avec des repères précis.</p></article>
         <article><b>À proximité</b><h3>N'évacuez pas spontanément.</h3><p>Fermez portes, fenêtres et ventilation extérieure. Suivez BE-Alert et les autorités locales, sauf danger direct.</p></article>
@@ -36,7 +36,7 @@
       </section>
       <section class="sources" id="sources"><div><p class="eyebrow">Connaissance contrôlée</p><h2>Fondé sur des sources officielles.</h2></div><p>Centre de Crise national, SPF Intérieur 112, SPW Environnement, Vlaanderen / Agentschap Natuur en Bos, OMS Europe et mécanismes européens. Toute consigne locale doit être sourcée et horodatée.</p></section>
     </main>
-    <footer><span>1771 · Voicebot d'information · Banana Navy</span><span>Urgence : 112 · Belgique · 2026</span></footer>
+    <footer><span>1771 · Voicebot inbound d'information · Banana Navy</span><span>Questions : 1771 · Urgence : 112</span></footer>
     <div class="modal" aria-hidden="true"><button class="backdrop" aria-label="Fermer"></button><section role="dialog" aria-modal="true" aria-labelledby="dialog-title"><button class="close" aria-label="Fermer">×</button><p class="eyebrow">1771 · Démonstration sécurisée</p><h2 id="dialog-title">Parlez au voicebot</h2><p class="modal-copy"></p><div class="status"><span></span><strong>Prêt</strong><small>Le microphone n'est activé qu'après votre accord.</small></div><button class="primary start">Démarrer</button><button class="stop" hidden>Terminer</button><p class="error" role="alert"></p><p class="fineprint">1771 informe et oriente. Ce prototype ne contacte pas automatiquement les secours. En cas de danger, fermez cette fenêtre et composez le 112.</p></section></div>
     <script type="module" src="/src/app.js"></script>
   </body>

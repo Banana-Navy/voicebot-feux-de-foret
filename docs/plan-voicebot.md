@@ -2,15 +2,39 @@
 
 ## Mission
 
-Donner en quelques secondes une prochaine action sûre, adaptée au lieu et à la situation, dans la langue de l'appelant. Le bot informe et oriente ; il ne commande pas les secours et ne remplace jamais le 112.
+Répondre aux appels entrants de la population et donner en quelques secondes une réponse officielle, compréhensible et adaptée à la question, au lieu et à la situation. L'appelant peut poser librement des questions avant, pendant ou après un feu de forêt. Le bot informe et oriente ; il ne commande pas les secours et ne remplace jamais le 112.
 
-Le public accède au voicebot via le **1771**. Chaque support doit préciser sans ambiguïté : « 1771 = information et orientation ; 112 = urgence ».
+Le public appelle le voicebot inbound via le **1771**. Il ne s'agit pas d'un dispositif d'appels sortants. Chaque support doit préciser sans ambiguïté : « 1771 = renseignements et orientation ; 112 = urgence ».
+
+## Expérience d'un appel entrant
+
+1. Le 1771 décroche et annonce sa mission ainsi que la distinction avec le 112.
+2. Il détecte la langue ou laisse choisir FR, NL, DE ou EN.
+3. Il demande : « Comment puis-je vous aider concernant les feux de forêt ou de végétation ? »
+4. L'appelant pose ses questions librement. Le bot répond depuis la base officielle, pose seulement les questions de contexte nécessaires et conserve le fil de la conversation.
+5. Un triage de sécurité reste actif pendant tout l'appel. Dès qu'une urgence est détectée, la réponse normale est interrompue au profit de la consigne 112.
+6. À la fin, le bot résume les actions importantes et rappelle les canaux officiels pertinents.
 
 ## Ouverture de chaque conversation
 
-1. Détecter ou demander la langue : FR, NL, DE ou EN.
-2. Dire : « Si vous voyez un feu, si la fumée est proche, si quelqu'un est en danger ou respire mal, appelez maintenant le 112. Je peux rester avec vous pour vous rappeler les informations à donner. »
-3. Poser une seule question de triage : « Êtes-vous dans la forêt ou la zone naturelle, chez vous à proximité, sur la route, ou demandez-vous des conseils de prévention ? »
+1. Accueillir : « Bienvenue au 1771, le service vocal d'information sur les feux de forêt et de végétation. Pour une urgence immédiate, appelez le 112. »
+2. Détecter ou demander la langue : FR, NL, DE ou EN.
+3. Demander : « Comment puis-je vous aider ? » et laisser l'appelant formuler sa question sans menu obligatoire.
+4. Si la demande concerne une situation en cours, déterminer avec le minimum de questions si la personne se trouve dans la nature, chez elle à proximité ou sur la route.
+
+## Questions couvertes
+
+- Risque actuel et signification des codes vert, jaune, orange ou rouge.
+- Interdictions d'accès, de feu, de barbecue, de travaux ou de stationnement.
+- Signalement d'un feu et informations à communiquer au 112.
+- Conduite à tenir dans la forêt, à domicile, en voiture ou face à la fumée.
+- Mise à l'abri, ordre d'évacuation, affaires à emporter et centres d'accueil officiels.
+- Enfants, personnes âgées, grossesse, handicap, maladies respiratoires ou cardiaques.
+- Animaux domestiques et grands animaux.
+- Qualité de l'air, symptômes liés à la fumée et recherche d'une aide médicale.
+- Préparation du logement, kit d'urgence et autonomie de 72 heures.
+- Retour dans la zone, suites après l'incendie et canaux d'information officiels.
+- Explication du rôle des communes, provinces, zones de secours, Régions, Centre de Crise et mécanismes européens.
 
 ## Arbre de triage
 
@@ -74,7 +98,7 @@ Le bot peut lire, avec provenance et horodatage : messages BE-Alert validés, fl
 
 ## Architecture cible
 
-1771/web → couche télécom → détection de langue → triage déterministe → agent conversationnel → base officielle versionnée → outils en lecture seule → transfert 112/humain → journal d'audit pseudonymisé.
+Appel entrant au 1771/web → couche télécom → accueil et détection de langue → questions libres → triage déterministe permanent → agent conversationnel → base officielle versionnée → outils officiels en lecture seule → orientation 112/humain → journal d'audit pseudonymisé.
 
 Les règles « 112 », « ne pas évacuer spontanément », « ne pas lutter contre un feu établi » et « ne pas inventer un ordre local » sont exécutées hors LLM. Toute mise à jour d'un message opérationnel exige une source, un territoire, une heure de début, une heure d'expiration et un approbateur.
 
@@ -88,7 +112,7 @@ Les règles « 112 », « ne pas évacuer spontanément », « ne pas lutter con
 
 ## Phases
 
-1. Prototype fermé : agent sans données temps réel, scénarios officiels et tests automatisés.
+1. Prototype inbound fermé : appels entrants de test, agent sans données temps réel, questions libres, scénarios officiels et tests automatisés.
 2. Pilote : intégration d'un flux officiel de test et transfert humain, avec une commune/zone de secours partenaire.
 3. Validation : exercice de crise, DPO/RGPD, sécurité, charge et revue par services de secours.
 4. Production : numéro dédié, supervision 24/7, révocation rapide des contenus et exercices réguliers.

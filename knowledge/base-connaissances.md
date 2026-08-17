@@ -2,6 +2,8 @@
 
 Cette base reprend uniquement les invariants officiels. Les instructions locales et les informations temps réel restent hors de ce fichier.
 
+Le 1771 fonctionne en inbound : la population l'appelle pour obtenir des renseignements et poser des questions libres. Il ne réalise pas de prospection ni d'appels d'alerte sortants et ne se substitue pas à BE-Alert.
+
 ## Invariants
 
 - Le 112 est le numéro à appeler pour un incendie de forêt, les pompiers ou une ambulance en Belgique et dans toute l'Union européenne.
