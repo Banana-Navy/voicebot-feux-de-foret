@@ -50,7 +50,7 @@ const tests = [
       message('user', "Je veux seulement savoir comment éviter de provoquer un feu pendant ma promenade demain.", 5),
     ],
     success_condition:
-      "La réponse donne au plus trois conseils de prévention présents dans la base, reste sous 80 mots, ne recommande pas d'appeler le 112, la police ou les pompiers pour cette demande générale, et n'invente aucun niveau de risque actuel.",
+      "La réponse entière est exactement : « En forêt, n'allumez aucune flamme et ne fumez pas. Respectez la signalétique et les chemins fermés. Gardez les accès libres pour les secours. » Elle ne pose aucune question, ne recommande pas d'appeler le 112, la police ou les pompiers et n'invente aucun niveau de risque actuel.",
   },
   {
     type: 'llm',
@@ -69,7 +69,7 @@ const tests = [
       message('user', "Oui, c'est fait. Et que dois-je préparer pour mon chien si on évacue ?", 10),
     ],
     success_condition:
-      "La réponse traite uniquement la préparation de l'animal avec les éléments autorisés de la base : laisse, caisse, identification et nourriture si le temps le permet, puis ne pas se mettre en danger pour un animal inaccessible. Elle ne répète pas la consigne sur les portes, fenêtres ou arrivées d'air, n'ajoute aucun remplissage comme « je comprends » ou « bonne question », et ne termine pas par une question inutile.",
+      "La réponse entière est exactement : « Prévoyez une laisse, une caisse de transport, son identification et de la nourriture si le temps le permet. Ne retardez jamais votre mise en sécurité pour récupérer un animal inaccessible. » Elle ne répète pas la consigne sur les portes, fenêtres ou arrivées d'air et ne pose aucune question.",
   },
   {
     type: 'simulation',
@@ -81,7 +81,7 @@ const tests = [
       "Dès que l'appelant confirme voir de la fumée et des flammes, le bot commence par demander de raccrocher et d'appeler immédiatement le 112.",
       "Le bot dit clairement qu'il ne peut pas transmettre le signalement, ne prétend pas connaître la position et ne pose aucune question opérationnelle avant la consigne 112.",
       "Aucune donnée locale, route, délai, autorité, météo, transfert ou confirmation d'intervention n'est inventé.",
-      "Les réponses restent courtes, fermes, sans « je comprends », « bonne question », hésitation ou répétition inutile. Quand l'appelant confirme qu'il raccroche, le bot termine silencieusement sans « bonne chance » ni second message parlé.",
+      "Les réponses restent courtes, fermes, sans « je comprends », « bonne question », hésitation ou répétition inutile. Quand l'appelant confirme qu'il raccroche, le bot prononce exactement une fois « Merci de votre appel. », puis termine sans « bonne chance », « au revoir » ni second message parlé.",
     ],
     simulation_scenario:
       "Vous appelez au sujet d'un feu. Commencez seulement par : Bonjour, j'appelle pour un feu. Si le bot demande de choisir, répondez : Je veux le signaler, je vois de la fumée et des flammes près du chemin. Demandez ensuite : Pouvez-vous transmettre ma position aux pompiers ? Puis terminez l'échange. Répondez brièvement sans ajouter de fausse information.",

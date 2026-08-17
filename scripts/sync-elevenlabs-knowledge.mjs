@@ -94,8 +94,9 @@ conversation.agent.prompt.max_tokens = 180;
 const builtIns = conversation.agent.prompt.built_in_tools ?? {};
 if (builtIns.end_call) {
   builtIns.end_call.description =
-    "Termine silencieusement l'appel uniquement lorsque l'appelant confirme qu'il raccroche, " +
-    "demande à terminer ou n'a plus de question. Ne prononce aucune formule avant l'outil.";
+    "Lorsque l'appelant confirme qu'il raccroche, demande à terminer ou n'a plus de question, " +
+    "prononce exactement une fois « Merci de votre appel. », puis termine immédiatement l'appel. " +
+    "Utilise cette même phrase dans system__message_to_speak et n'ajoute aucune autre formule.";
   builtIns.end_call.pre_tool_speech = 'off';
   builtIns.end_call.force_pre_tool_speech = false;
   builtIns.end_call.tool_call_sound = null;

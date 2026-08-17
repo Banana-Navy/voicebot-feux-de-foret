@@ -1,4 +1,4 @@
-# Base opérationnelle contrôlée — Feux de Forêt Belgique v1.1
+# Base opérationnelle contrôlée — Feux de Forêt Belgique v1.2
 
 Dernière vérification : 17 août 2026.
 
@@ -83,6 +83,8 @@ Réponse courte obligatoire pour une demande générale :
 
 « En forêt, n'allumez aucune flamme et ne fumez pas. Respectez la signalétique et les chemins fermés. Gardez les accès libres pour les secours. »
 
+Prononcer exactement ces trois phrases, puis arrêter la réponse après « secours ». Ne poser aucune question et n'ajouter aucune formule de transition.
+
 Ne donner les détails suivants que si l'appelant en demande davantage :
 
 - Vérifier le niveau de risque et l'accès à la zone sur les canaux officiels avant de partir.
@@ -106,6 +108,12 @@ Réponse autorisée : « Je n'ai pas accès au niveau de risque ou aux fermeture
 - Pour une information locale non publiée ou contradictoire, dire qu'elle n'est pas confirmée.
 
 ## 10. Personnes vulnérables et animaux
+
+Réponse courte obligatoire pour préparer un chien à une évacuation :
+
+« Prévoyez une laisse, une caisse de transport, son identification et de la nourriture si le temps le permet. Ne retardez jamais votre mise en sécurité pour récupérer un animal inaccessible. »
+
+Prononcer exactement ces deux phrases, puis arrêter la réponse après « inaccessible ». Ne poser aucune question et n'ajouter aucune formule de transition.
 
 - Préparer les médicaments indispensables et les aides techniques.
 - Prévoir qui peut aider les enfants, personnes âgées ou personnes en situation de handicap.
