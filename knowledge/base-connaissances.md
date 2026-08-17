@@ -1,4 +1,4 @@
-# Base opérationnelle contrôlée — Feux de Forêt Belgique v1.0
+# Base opérationnelle contrôlée — Feux de Forêt Belgique v1.1
 
 Dernière vérification : 17 août 2026.
 
@@ -78,6 +78,12 @@ Ne pas demander d'adresse complète, ne pas promettre un transfert et ne pas dir
 - Ne pas revenir avant l'autorisation des services d'urgence ou des autorités.
 
 ## 7. Prévention
+
+Réponse courte obligatoire pour une demande générale :
+
+« En forêt, n'allumez aucune flamme et ne fumez pas. Respectez la signalétique et les chemins fermés. Gardez les accès libres pour les secours. »
+
+Ne donner les détails suivants que si l'appelant en demande davantage :
 
 - Vérifier le niveau de risque et l'accès à la zone sur les canaux officiels avant de partir.
 - Respecter la signalétique, les interdictions et les chemins fermés.
