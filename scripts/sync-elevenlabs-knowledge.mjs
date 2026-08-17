@@ -11,9 +11,6 @@ const documentId = '89AM7w3ggzzZpzmAiiRT';
 const headers = { 'xi-api-key': apiKey, 'content-type': 'application/json' };
 const knowledgeFiles = [
   'knowledge/base-connaissances.md',
-  'knowledge/incidents-recents.md',
-  'docs/sources-officielles.md',
-  'docs/plan-voicebot.md',
 ];
 const sections = await Promise.all(knowledgeFiles.map(async (file) => {
   const content = await readFile(resolve(root, file), 'utf8');
@@ -26,7 +23,7 @@ const documentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/knowle
   method: 'PATCH',
   headers,
   body: JSON.stringify({
-    name: 'Feux de Forêt — Base officielle et retours d’expérience — 2026.08.17',
+    name: 'Feux de Forêt — Base opérationnelle contrôlée — 2026.08.17',
     content: knowledgeText,
   }),
 });
@@ -40,14 +37,14 @@ if (!agentResponse.ok) throw new Error(`Lecture agent impossible (${agentRespons
 const conversation = structuredClone(agent.conversation_config);
 conversation.agent.prompt.prompt = systemPrompt;
 conversation.agent.first_message =
-  "Bienvenue sur la ligne d'information Feux de Forêt de Banana Navy. " +
-  "Cet appel est enregistré à des fins de test et d'amélioration du service. " +
-  "Cette ligne ne remplace ni le dix-sept septante-et-un ni le cent douze. " +
-  "Pour une urgence immédiate, raccrochez et appelez le cent douze. Comment puis-je vous aider ?";
+  "Bienvenue sur la ligne Feux de Forêt de Banana Navy. Cet appel est enregistré pour nos tests. " +
+  "Souhaitez-vous signaler un feu, ou obtenir des informations et des conseils ? " +
+  "Si le feu ou la fumée vous menace maintenant, raccrochez et appelez immédiatement le cent douze. " +
+  "Cette ligne ne transmet aucun signalement et ne remplace ni le dix-sept septante-et-un ni le cent douze.";
 const localized = {
-  nl: 'Welkom bij de informatielijn Bos- en Natuurbranden van Banana Navy. Dit gesprek wordt opgenomen om de dienst te testen en te verbeteren. Deze lijn vervangt noch 1771, noch 112. Bel bij onmiddellijk gevaar 112. Hoe kan ik u helpen?',
-  de: 'Willkommen bei der Informationslinie Wald- und Vegetationsbrände von Banana Navy. Dieses Gespräch wird zu Test- und Verbesserungszwecken aufgezeichnet. Diese Linie ersetzt weder 1771 noch 112. Rufen Sie bei unmittelbarer Gefahr die 112 an. Wie kann ich Ihnen helfen?',
-  en: 'Welcome to Banana Navy’s Wildfire Information Line. This call is recorded for testing and service improvement. This line does not replace 1771 or 112. For immediate danger, hang up and call 112. How can I help you?',
+  nl: 'Welkom bij de lijn Bos- en Natuurbranden van Banana Navy. Dit gesprek wordt opgenomen voor onze tests. Wilt u een brand melden, of informatie en advies krijgen? Als vuur of rook u nu bedreigt, hang dan op en bel onmiddellijk 112. Deze lijn verstuurt geen meldingen en vervangt 1771 of 112 niet.',
+  de: 'Willkommen bei der Waldbrand-Hotline von Banana Navy. Dieses Gespräch wird für unsere Tests aufgezeichnet. Möchten Sie einen Brand melden oder Informationen und Ratschläge erhalten? Wenn Feuer oder Rauch Sie jetzt bedrohen, legen Sie auf und rufen Sie sofort die 112 an. Diese Leitung übermittelt keine Meldung und ersetzt weder 1771 noch 112.',
+  en: 'Welcome to Banana Navy’s Wildfire Line. This call is recorded for our tests. Would you like to report a fire, or get information and advice? If fire or smoke threatens you now, hang up and call 112 immediately. This line cannot submit a report and does not replace 1771 or 112.',
 };
 for (const [language, message] of Object.entries(localized)) {
   const preset = conversation.language_presets?.[language];
@@ -62,15 +59,19 @@ conversation.agent.prompt.knowledge_base = [{
   type: 'text',
   name: document.name,
   id: document.id,
-  usage_mode: 'auto',
+  usage_mode: 'prompt',
 }];
 conversation.agent.prompt.rag = {
   ...(conversation.agent.prompt.rag ?? {}),
-  enabled: true,
+  enabled: false,
   optional_rag_enabled: false,
   embedding_model: 'multilingual_e5_large_instruct',
   max_documents_length: 18000,
 };
+conversation.agent.prompt.llm = 'claude-sonnet-4-5';
+conversation.agent.prompt.backup_llm_config = { preference: 'override', order: ['claude-haiku-4-5'] };
+conversation.agent.prompt.temperature = 0;
+conversation.agent.prompt.max_tokens = 220;
 
 const platform = structuredClone(agent.platform_settings);
 platform.privacy = {
@@ -109,7 +110,7 @@ console.log(JSON.stringify({
   knowledge_document_id: document.id,
   knowledge_document_name: document.name,
   knowledge_characters: knowledgeText.length,
-  rag_enabled: true,
+  rag_enabled: false,
   audio_recording: true,
   retention_days: 30,
   phone_number: phone.phone_number,

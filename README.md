@@ -2,7 +2,7 @@
 
 Socle de conception et landing page pour un assistant vocal **inbound** multilingue d'information et d'orientation face aux feux de forêt et de végétation. La population appelle volontairement le 071 49 98 17, pose ses questions librement et reçoit des réponses fondées sur des sources officielles.
 
-Le bot est une couche complémentaire aux autorités. Il ne remplace ni le 112, ni BE-Alert, ni les services de secours. Tant que l'agent vocal de test n'est pas configuré, la page présente le parcours et les consignes sans simuler un appel opérationnel.
+Le bot est une couche complémentaire aux autorités. Il ne remplace ni le 112, ni BE-Alert, ni les services de secours. L'agent vocal de test est configuré et relié au numéro inbound ci-dessous.
 
 Numéro d'accès au voicebot inbound : **071 49 98 17** (`+32 71 49 98 17`). Cette ligne ne remplace ni le **1771** ni le numéro d'urgence **112**. Le projet n'est pas conçu comme une campagne d'appels sortants.
 
@@ -19,12 +19,12 @@ La démonstration vocale utilise par défaut l'agent ElevenLabs `Feux de Forêt 
 
 - Nom : `Feux de Forêt — Inbound (BE)`
 - Agent ID : `agent_2201m07k477kepfsq9p5h8bh4x1g`
-- Mode : inbound, sans numéro attaché
+- Mode : inbound, numéro attaché
 - Langues : français, néerlandais, allemand et anglais
 - Téléphonie : numéro Twilio `+3271499817`, appels entrants, affecté à la branche principale
 - Audio : enregistré pendant les appels de test, avec annonce préalable
 - Transcriptions : conservation maximale configurée à 30 jours
-- Base de connaissances ElevenLabs : document `89AM7w3ggzzZpzmAiiRT`, RAG multilingue activé
+- Base de connaissances ElevenLabs : document `89AM7w3ggzzZpzmAiiRT`, injecté intégralement dans le prompt ; RAG désactivé pour éviter les mélanges de fragments
 
 ## Contenu
 
