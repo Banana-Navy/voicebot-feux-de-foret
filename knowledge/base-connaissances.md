@@ -1,4 +1,4 @@
-# Base opérationnelle contrôlée — Feux de Forêt Belgique v1.2
+# Base opérationnelle contrôlée — Feux en Milieu Naturel Belgique v2.0
 
 Dernière vérification : 17 août 2026.
 
@@ -8,11 +8,11 @@ Cette base contient uniquement des consignes stables issues du Centre de Crise n
 
 ### 071 49 98 17
 
-Numéro du démonstrateur Banana Navy « Feux de Forêt ». Il informe et oriente. Il ne reçoit pas officiellement les signalements, ne contacte pas les secours et ne remplace ni le 1771 ni le 112.
+Numéro de la ligne d'information « Feux en Milieu Naturel ». Elle informe et oriente. Elle ne reçoit pas officiellement les signalements, ne contacte pas les secours et ne remplace ni le 1771 ni le 112. Le voicebot ne mentionne aucune entreprise dans ses échanges.
 
 ### 112
 
-Numéro d'urgence gratuit en Belgique et dans toute l'Union européenne. Pour un feu de forêt ou de végétation constaté, un départ de feu, une personne en danger, les pompiers ou une ambulance : appeler immédiatement le 112 ou utiliser l'application 112 BE.
+Numéro d'urgence gratuit en Belgique et dans toute l'Union européenne. Pour un feu en milieu naturel constaté, un départ de feu, une personne en danger, les pompiers ou une ambulance : appeler immédiatement le 112 ou utiliser l'application 112 BE.
 
 Informations utiles à communiquer au 112 :
 
@@ -27,7 +27,7 @@ Numéro national d'information que les autorités locales, provinciales ou natio
 
 ### 1722
 
-Service non urgent pour certaines interventions de pompiers liées aux tempêtes ou aux inondations lorsqu'il est activé. Il ne doit pas être conseillé pour signaler un feu de forêt.
+Service non urgent pour certaines interventions de pompiers liées aux tempêtes ou aux inondations lorsqu'il est activé. Il ne doit pas être conseillé pour signaler un feu en milieu naturel.
 
 ### Information officielle
 
@@ -37,9 +37,7 @@ Ne jamais conseiller d'appeler le 112, la police ou les services d'urgence pour 
 
 ## 2. Si une personne veut signaler un feu
 
-Réponse prioritaire :
-
-« Raccrochez et appelez immédiatement le 112. Ce voicebot ne peut pas transmettre votre signalement aux secours. Mettez-vous à distance du feu et de la fumée sans vous exposer. Au 112, indiquez le lieu précis et l'accès, ce qui brûle, et les personnes en danger ou blessées. »
+Utiliser d'abord le gabarit prioritaire de la langue active défini à la section 14. Donner ensuite au maximum deux consignes : se mettre à distance du feu et de la fumée sans s'exposer ; communiquer au 112 le lieu précis et l'accès, ce qui brûle, et les personnes en danger ou blessées.
 
 Ne pas demander d'adresse complète, ne pas promettre un transfert et ne pas dire que le signalement a été enregistré.
 
@@ -141,10 +139,65 @@ Prononcer exactement ces deux phrases, puis arrêter la réponse après « inacc
 
 ## 12. Sources officielles
 
-- Centre de Crise national — Feu de forêt : https://centredecrise.be/fr/risques-en-belgique/risques-naturels/feu-de-foret
+- Centre de Crise national — Feu en milieu naturel : https://centredecrise.be/fr/risques-en-belgique/risques-naturels/feu-de-foret
 - Centre de Crise national — Évacuer : https://centredecrise.be/fr/que-pouvez-vous-faire/le-bon-reflexe/evacuer
 - Centre de Crise national — Information de la population et 1771 : https://centredecrise.be/fr/que-font-les-autorites/gestion-de-crise/informer-la-population
 - Centre de Crise national — Information pendant une urgence : https://centredecrise.be/fr/que-pouvez-vous-faire/informez-vous/linformation-pendant-une-situation-durgence
 - SPF Intérieur / 112 — Appeler le 112 : https://112.be/fr/how-call/comment-appeler-le-112
 - SPW Environnement — Feux en milieu naturel : https://environnement.wallonie.be/feux
 - Vlaanderen / Agentschap Natuur en Bos — Risque de feu de nature : https://www.vlaanderen.be/natuur-milieu-en-klimaat/bomen-en-planten/brandpreventie-in-bossen-en-natuurgebieden-in-vlaanderen
+
+## 13. Feux de tourbe, tourbières et Hautes Fagnes
+
+### Ce qu'il faut expliquer
+
+Un feu de tourbe peut progresser sous la surface et rester difficile à voir. Des points chauds peuvent continuer à couver après la disparition des flammes visibles et provoquer une reprise. La seule absence de flammes, ou le fait que l'incendie ait commencé plusieurs jours auparavant, ne permet donc pas de conclure que la zone est sûre ou que le feu est éteint.
+
+Le voicebot ne donne jamais de durée prévisible, de date de réouverture ou de diagnostic local. L'extinction complète, les zones sûres et la réouverture relèvent des pompiers, du Département de la Nature et des Forêts et du gestionnaire officiel.
+
+Dans les Hautes Fagnes, le drapeau rouge signifie que certaines zones sensibles sont interdites d'accès. Les panneaux aux entrées des chemins et les cartes officielles du SPW déterminent les zones concernées. Un statut publié lors d'un ancien incendie ne permet pas de décider d'une activité aujourd'hui.
+
+### Réponse obligatoire — peut-on prévoir une promenade ou une activité ?
+
+**Français** : « Un feu de tourbe peut continuer à couver sous terre et reprendre, même plusieurs jours après son départ. Je ne peux donc pas confirmer qu'une activité dans les Hautes Fagnes est sûre. Vérifiez le jour même les cartes et avis du Service public de Wallonie, puis respectez les panneaux et toute fermeture sur place. »
+
+**Nederlands** : « Een veenbrand kan ondergronds blijven smeulen en opnieuw oplaaien, zelfs meerdere dagen na het ontstaan. Daarom kan ik niet bevestigen dat een activiteit in de Hoge Venen veilig is. Controleer op de dag zelf de kaarten en berichten van de Waalse overheid en respecteer alle borden en afsluitingen ter plaatse. »
+
+**Deutsch** : « Ein Torfbrand kann unterirdisch weiterschwelen und erneut aufflammen, selbst mehrere Tage nach seinem Ausbruch. Deshalb kann ich nicht bestätigen, dass eine Aktivität im Hohen Venn sicher ist. Prüfen Sie am selben Tag die Karten und Hinweise des Öffentlichen Dienstes der Wallonie und beachten Sie alle Schilder und Sperrungen vor Ort. »
+
+### Réponse obligatoire — le feu est ancien, est-il encore dangereux ?
+
+**Français** : « Oui, un feu dans la tourbe peut rester caché sous la surface et reprendre. La date de départ du feu ne suffit pas à confirmer que le danger est terminé. N'entrez pas dans une zone fermée et suivez uniquement l'avis actuel des autorités et du gestionnaire. »
+
+**Nederlands** : « Ja, een brand in veen kan onder het oppervlak verborgen blijven en opnieuw oplaaien. De begindatum van de brand volstaat niet om te besluiten dat het gevaar voorbij is. Ga een afgesloten gebied niet binnen en volg alleen het actuele advies van de overheid en de terreinbeheerder. »
+
+**Deutsch** : « Ja, ein Feuer im Torfboden kann unter der Oberfläche verborgen bleiben und erneut aufflammen. Aus dem Datum des Brandausbruchs lässt sich nicht ableiten, dass die Gefahr vorbei ist. Betreten Sie kein gesperrtes Gebiet und folgen Sie ausschließlich den aktuellen Hinweisen der Behörden und des Gebietsverwalters. »
+
+### Détection et triage
+
+Les mots « tourbe », « tourbière », « fagne », « Hautes Fagnes », « feu souterrain », « fumée sortant du sol », « veen », « veenbrand », « Hoge Venen », « smeulen », « turf », « Torfbrand », « Hohes Venn », « Schwelbrand », « peat », « peat fire », « High Fens », « smouldering » et « smoke from the ground » doivent déclencher ce module.
+
+- Si l'appelant voit actuellement de la fumée, une lueur, une flamme ou un sol qui fume : voie SIGNALER, 112 immédiatement, sans tenter de vérifier ni d'éteindre.
+- Si l'appelant demande seulement si une promenade, une activité, un événement ou un retour est possible : utiliser la réponse obligatoire correspondante et renvoyer vers les avis et cartes actuels du SPW.
+- Ne jamais conseiller de tester le sol, de chercher un point chaud, de verser de l'eau, de marcher hors chemin ou de franchir une fermeture.
+
+### Sources complémentaires
+
+- SPW Environnement — avis, drapeau rouge et cartes des chemins fermés dans les Hautes Fagnes : https://environnement.wallonie.be/actualite/risque-d-incendie-fin-du-drapeau-rouge-dans-la-reserve-naturelle-des-hautes-fagnes
+- Gouvernement wallon — circuler en forêt et vérifier les accès : https://www.wallonie.be/fr/demarches/circuler-en-foret-en-wallonie
+- OMS Europe — fumées d'incendies et protection de la santé : https://www.who.int/europe/news/item/31-07-2026-wildfire-smoke--a-frequently-underestimated-health-risk
+- Référence technique publique sur les feux de tourbe : https://www.gov.uk/government/publications/heather-and-grass-management-code/heather-and-grass-management-code-2025
+
+## 14. Gabarits multilingues contrôlés
+
+Les gabarits suivants sont les seules formulations d'ouverture autorisées pour un signalement réel. Ils doivent être prononcés avant toute question :
+
+- **Français** : « Raccrochez et appelez immédiatement le cent douze. Cette ligne ne peut pas transmettre votre signalement aux secours. »
+- **Nederlands** : « Hang op en bel onmiddellijk 112. Deze informatielijn kan uw melding niet doorgeven aan de hulpdiensten. »
+- **Deutsch** : « Legen Sie auf und rufen Sie sofort 112 an. Diese Informationshotline kann Ihre Meldung nicht an die Einsatzkräfte weiterleiten. »
+
+Pour la prévention générale, utiliser exactement le gabarit de la langue active et ne rien ajouter :
+
+- **Français** : « En forêt, n'allumez aucune flamme et ne fumez pas. Respectez la signalétique et les chemins fermés. Gardez les accès libres pour les secours. »
+- **Nederlands** : « Maak geen vuur en rook niet in het bos. Respecteer de signalisatie en afgesloten paden. Houd de toegangswegen vrij voor de hulpdiensten. »
+- **Deutsch** : « Entzünden Sie im Wald kein Feuer und rauchen Sie nicht. Beachten Sie die Beschilderung und gesperrte Wege. Halten Sie die Zufahrten für die Einsatzkräfte frei. »

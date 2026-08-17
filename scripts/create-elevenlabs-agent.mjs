@@ -25,13 +25,11 @@ const systemPrompt = await readFile(resolve(root, 'agent/system-prompt.md'), 'ut
 
 const conversation = structuredClone(reference.conversation_config);
 conversation.agent.first_message =
-  "Bienvenue sur la ligne Feux de Forêt de Banana Navy. Cet appel de test est enregistré. " +
-  "Danger immédiat : raccrochez et appelez le cent douze. " +
-  "Voulez-vous signaler un feu, ou obtenir des informations ?";
-conversation.agent.language = 'fr';
+  "Bonjour et bienvenue. Goedendag en welkom. Guten Tag und herzlich willkommen. Vous préférez le français, Nederlands oder Deutsch ?";
+conversation.agent.language = 'en';
 conversation.agent.disable_first_message_interruptions = false;
 conversation.agent.prompt.prompt = systemPrompt;
-conversation.agent.prompt.llm = 'claude-sonnet-4-5';
+conversation.agent.prompt.llm = 'gemini-2.5-flash';
 conversation.agent.prompt.temperature = 0;
 conversation.agent.prompt.max_tokens = 180;
 conversation.agent.prompt.enable_reasoning_summary = false;
@@ -47,7 +45,7 @@ conversation.agent.prompt.mcp_server_ids = [];
 conversation.agent.prompt.native_mcp_server_ids = [];
 conversation.agent.prompt.knowledge_base = [{
   type: 'text',
-  name: 'Feux de Forêt — Base opérationnelle contrôlée — 2026.08.17',
+  name: 'Feux en Milieu Naturel — Base opérationnelle contrôlée — 2026.08.17',
   id: knowledgeDocumentId,
   usage_mode: 'prompt',
 }];
@@ -66,33 +64,60 @@ conversation.agent.prompt.built_in_tools = {
 if (conversation.agent.prompt.built_in_tools.end_call) {
   conversation.agent.prompt.built_in_tools.end_call.description =
     "Lorsque l'appelant confirme qu'il raccroche, demande à terminer ou n'a plus de question, " +
-    "prononce exactement une fois « Merci de votre appel. », puis termine immédiatement l'appel. " +
-    "Utilise cette même phrase dans system__message_to_speak et n'ajoute aucune autre formule.";
+    "prononce exactement une fois la clôture de la langue active : « Merci de votre appel. », " +
+    "« Bedankt voor uw oproep. » ou « Vielen Dank für Ihren Anruf. ». " +
+    "Utilise cette même phrase dans system__message_to_speak, termine immédiatement et n'ajoute rien.";
   conversation.agent.prompt.built_in_tools.end_call.pre_tool_speech = 'off';
   conversation.agent.prompt.built_in_tools.end_call.force_pre_tool_speech = false;
   conversation.agent.prompt.built_in_tools.end_call.tool_call_sound = null;
 }
 if (conversation.agent.prompt.built_in_tools.language_detection) {
+  conversation.agent.prompt.built_in_tools.language_detection.description =
+    "Change la langue uniquement au choix initial de l'appelant ou s'il demande explicitement une autre langue. " +
+    "Ne rappelle jamais cet outil lorsque l'appelant continue dans la langue déjà active.";
   conversation.agent.prompt.built_in_tools.language_detection.pre_tool_speech = 'off';
+  conversation.agent.prompt.built_in_tools.language_detection.interruption_mode = 'disable_during_tool_and_turn';
   conversation.agent.prompt.built_in_tools.language_detection.force_pre_tool_speech = false;
   conversation.agent.prompt.built_in_tools.language_detection.tool_call_sound = null;
 }
 
+const presetTemplate = structuredClone(
+  conversation.language_presets?.nl ?? conversation.language_presets?.de ?? conversation.language_presets?.fr,
+);
+if (!presetTemplate?.overrides) throw new Error('Impossible de créer les presets de langue.');
 const presetMessages = {
-  nl: 'Welkom bij de Bosbrandlijn van Banana Navy. Dit testgesprek wordt opgenomen. Onmiddellijk gevaar: hang op en bel 112. Wilt u een brand melden of informatie krijgen?',
-  de: 'Willkommen bei der Waldbrand-Hotline von Banana Navy. Dieses Testgespräch wird aufgezeichnet. Unmittelbare Gefahr: Legen Sie auf und rufen Sie 112 an. Möchten Sie einen Brand melden oder Informationen erhalten?',
-  en: 'Welcome to Banana Navy’s Wildfire Line. This test call is recorded. Immediate danger: hang up and call 112. Do you want to report a fire or get information?',
+  fr: { voiceId: 'IpTJxgMFj1wbxpha4zxm', stability: 0.55, similarity: 0.80, speed: 0.90 },
+  nl: { voiceId: '9kBSa5emtWArU7U0792v', stability: 0.52, similarity: 0.82, speed: 0.95 },
+  de: { voiceId: 'FTNCalFNG5bRnkkaP5Ug', stability: 0.55, similarity: 0.80, speed: 1.05 },
 };
-for (const [language, message] of Object.entries(presetMessages)) {
-  const preset = conversation.language_presets[language];
-  if (!preset?.overrides?.agent) continue;
-  preset.overrides.agent.first_message = message;
+conversation.language_presets = {};
+for (const [language, settings] of Object.entries(presetMessages)) {
+  const preset = structuredClone(presetTemplate);
+  preset.overrides ??= {};
+  preset.overrides.agent ??= {};
+  preset.overrides.agent.language = language;
+  preset.overrides.agent.first_message = conversation.agent.first_message;
+  preset.overrides.agent.prompt = {
+    llm: 'claude-haiku-4-5',
+    backup_llm_config: { preference: 'override', order: ['gemini-2.5-flash'] },
+  };
+  preset.overrides.tts = {
+    voice_id: settings.voiceId,
+    stability: settings.stability,
+    similarity_boost: settings.similarity,
+    speed: settings.speed,
+  };
+  conversation.language_presets[language] = preset;
 }
 
 conversation.asr.keywords = [
-  'feu de forêt', 'incendie', 'fumée', 'évacuation', 'BE-Alert', 'cent douze',
+  'feu en milieu naturel', 'incendie', 'fumée', 'évacuation', 'BE-Alert', 'cent douze',
   '071 49 98 17', '1771', 'dix-sept septante-et-un', 'brûlure', 'respirer', 'forêt', 'broussailles',
   'bosbrand', 'natuurbrand', 'Waldbrand', 'wildfire',
+  'français', 'Nederlands', 'néerlandais', 'Vlaams', 'Deutsch', 'allemand',
+  'tourbe', 'tourbière', 'Hautes Fagnes', 'feu souterrain',
+  'veen', 'veenbrand', 'Hoge Venen', 'smeulen',
+  'Torf', 'Torfbrand', 'Hohes Venn', 'Schwelbrand',
 ];
 conversation.asr.user_input_audio_format = 'ulaw_8000';
 conversation.turn.turn_model = 'turn_v3';
@@ -112,10 +137,10 @@ conversation.conversation.max_duration_seconds = 1200;
 conversation.conversation.file_input.enabled = false;
 conversation.tts.agent_output_audio_format = 'ulaw_8000';
 conversation.tts.model_id = 'eleven_flash_v2_5';
-conversation.tts.voice_id = 'KQmyXAYSiYXdRqlwDQFX';
-conversation.tts.speed = 1.08;
-conversation.tts.stability = 0.78;
-conversation.tts.similarity_boost = 0.85;
+conversation.tts.voice_id = '9kBSa5emtWArU7U0792v';
+conversation.tts.speed = 0.95;
+conversation.tts.stability = 0.52;
+conversation.tts.similarity_boost = 0.82;
 conversation.tts.optimize_streaming_latency = 3;
 conversation.tts.expressive_mode = false;
 
@@ -138,8 +163,8 @@ platform.guardrails = { ...(platform.guardrails ?? {}) };
 delete platform.guardrails.custom;
 
 const payload = {
-  name: 'Feux de Forêt — Inbound (BE)',
-  tags: ['banana-navy', 'wildfire', 'inbound', 'belgium', 'multilingual'],
+  name: 'Feux en Milieu Naturel — Inbound (BE)',
+  tags: ['banana-navy', 'wildfire', 'inbound', 'belgium', 'trilingual'],
   conversation_config: conversation,
   platform_settings: platform,
 };
@@ -157,7 +182,7 @@ if (!createResponse.ok) {
 console.log(JSON.stringify({
   agent_id: result.agent_id,
   name: payload.name,
-  languages: ['fr', 'nl', 'de', 'en'],
+  languages: ['fr', 'nl', 'de'],
   tools: [],
   phone_number_attached: false,
   voice_recording: true,

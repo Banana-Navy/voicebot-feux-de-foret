@@ -8,12 +8,14 @@ Dernière vérification : 17 août 2026. Les contenus dynamiques (codes de risqu
 |---|---|---|---|
 | Conduite avant, pendant et après | Centre de Crise national | https://centredecrise.be/fr/risques-en-belgique/risques-naturels/feu-de-foret | Arbre de décision principal |
 | Appel d'urgence | SPF Intérieur — 112 | https://112.be/fr/how-call/comment-appeler-le-112 | Données à transmettre et conduite pendant l'appel |
-| Quand appeler | SPF Intérieur — 112 | https://112.be/fr/qui-et-quand-appeler | Escalade obligatoire pour tout feu de forêt |
+| Quand appeler | SPF Intérieur — 112 | https://112.be/fr/qui-et-quand-appeler | Escalade obligatoire pour tout feu en milieu naturel |
 | Communication officielle | Centre de Crise national | https://centredecrise.be/fr/que-pouvez-vous-faire/informez-vous/linformation-pendant-une-situation-durgence | BE-Alert, autorités locales, médias officiels |
 | Évacuation | Centre de Crise national | https://centredecrise.be/fr/que-pouvez-vous-faire/le-bon-reflexe/evacuer | Départ, transport, minimum à emporter, animaux |
 | Kit d'urgence | Centre de Crise national | https://centredecrise.be/fr/que-pouvez-vous-faire/preparez-un-kit-durgence/un-kit-durgence-la-maison | Préparation 72 h et besoins spécifiques |
 | Fumée | Centre de Crise national | https://centredecrise.be/fr/documentation/publications/restez-hors-de-toute-fumee | Vocabulaire et consignes harmonisées |
 | Prévention wallonne | SPW Environnement | https://environnement.wallonie.be/feux | Prévention, témoin d'un départ de feu, interdictions locales |
+| Hautes Fagnes | SPW Environnement | https://environnement.wallonie.be/actualite/risque-d-incendie-fin-du-drapeau-rouge-dans-la-reserve-naturelle-des-hautes-fagnes | Drapeau rouge, cartes des chemins fermés et statut d'accès daté |
+| Activités en forêt | Gouvernement wallon | https://www.wallonie.be/fr/demarches/circuler-en-foret-en-wallonie | Vérification préalable des accès et respect des fermetures |
 | Organisation wallonne | Wallonie | https://www.wallonie.be/fr/faq-prevention-incendies-en-foret | DNF, zones de secours, CELEX |
 | Risque flamand | Vlaanderen / Agentschap Natuur en Bos | https://www.vlaanderen.be/natuur-milieu-en-klimaat/bomen-en-planten/brandpreventie-in-bossen-en-natuurgebieden-in-vlaanderen | Codes vert, jaune, orange, rouge et restrictions |
 | Personnes ayant besoin d'aide | Centre de Crise national | https://centredecrise.be/fr/que-pouvez-vous-faire/faites-un-plan/un-plan-pour-ceux-qui-ont-besoin-dune-aide-supplementaire | Médicaments, mobilité, accessibilité et soutien |
@@ -24,6 +26,7 @@ Dernière vérification : 17 août 2026. Les contenus dynamiques (codes de risqu
 | Domaine | Autorité | Source | Usage dans le bot |
 |---|---|---|---|
 | Santé et fumées | OMS Europe | https://www.who.int/europe/news-room/questions-and-answers/item/public-health-advice-during-the-wildfires--how-to-protect-your-health-and-keep-safe | Groupes vulnérables, exposition, symptômes et FFP2/N95 |
+| Feux de tourbe | Gouvernement britannique — code officiel de gestion | https://www.gov.uk/government/publications/heather-and-grass-management-code/heather-and-grass-management-code-2025 | Combustion dans la tourbe, sol pouvant couver plus de 48 h et risque de reprise secondaire |
 | Coordination européenne | Commission européenne — DG ECHO | https://civil-protection-humanitarian-aid.ec.europa.eu/what/civil-protection/eu-civil-protection-mechanism_en | Contexte institutionnel uniquement, pas de conseil individuel |
 | Suivi européen | Commission européenne — JRC/EFFIS | https://effis.jrc.ec.europa.eu/ | Carte et données de suivi, jamais source unique d'un ordre local |
 | Numéro européen | Union européenne / 112 Belgique | https://112.be/fr/how-call/comment-appeler-le-112 | Le 112 fonctionne dans les 27 États membres |

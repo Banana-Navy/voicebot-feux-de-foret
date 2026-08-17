@@ -1,4 +1,4 @@
-# Retours d'expérience récents — feux de forêt et de végétation
+# Retours d'expérience récents — feux en milieu naturel
 
 Version vérifiée le 17 août 2026. Ces événements sont des cas historiques destinés à améliorer les réponses. Ils ne décrivent jamais une situation en cours. Le bot doit toujours consulter une source locale récente avant d'affirmer qu'une route, un massif ou une zone est fermé ou évacué.
 

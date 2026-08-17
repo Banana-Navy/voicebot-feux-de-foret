@@ -1,16 +1,67 @@
-# Validation du voicebot Feux de Forêt — 17 août 2026
+# Validation du voicebot Feux en Milieu Naturel — 17 août 2026
+
+> **État v1.4 : synchronisée et tests automatisés réussis.** Le parcours trilingue FR/NL/DE, la présentation après choix de langue, le module feux de tourbe/Hautes Fagnes et la voix française belge `Adrien` sont actifs sur l'agent et le numéro. La recette humaine téléphonique dans les trois langues reste indispensable.
+
+## Recette requise pour la v1.4
+
+1. Synchronisation du prompt, de la base et de la téléphonie : réussie.
+2. Création ou mise à jour des onze tests ElevenLabs : réussie.
+3. Suite v1.4 `suite_4201m07x9qs3exvtnbw60hnyk54x` : `12/12`, soit trois passes pour chacun des quatre nouveaux scénarios.
+4. À faire : trois appels humains, un par langue nationale, pour vérifier que la présentation complète suit le choix de langue, que l'enregistrement est annoncé une seule fois et que le triage vient ensuite.
+5. À faire : tester une interruption d'urgence pendant l'accueil ; une fumée ou une flamme constatée doit toujours déclencher le 112 immédiatement.
+
+### Conversations vocales réelles v1.4
+
+Trois conversations WebSocket ont été exécutées sur l'agent actif, avec le véritable flux audio téléphonique µ-law 8 kHz :
+
+- français : `conv_7901m07xga38e1csh9krhjrz18pr` ;
+- néerlandais : `conv_9301m07xgprmf7z88w0afrpk444n` ;
+- allemand : `conv_5401m07xh7p2f4gbb7mkmp2f48kb`.
+
+Chaque conversation a validé successivement : l'accueil dans les trois langues, le choix de la langue, la présentation complète dans la langue choisie, l'annonce unique de l'enregistrement, la distinction avec une centrale d'urgence, le choix signaler/informer et une question sur une activité prévue plusieurs jours après un feu de tourbe.
+
+Les réponses tourbe/Fagnes sont conformes dans les trois langues : combustion souterraine et reprise possibles, aucune confirmation de sécurité, aucune durée inventée, vérification le jour même des avis et cartes de la Wallonie, respect des panneaux et fermetures.
+
+Les présentations audio durent `14,72 s` en français, `14,12 s` en néerlandais et `17,12 s` en allemand. Aucun silence supérieur à `400 ms` n'a été détecté au seuil de `-42 dB`, et les pics restent entre `-1,4` et `-1,0 dBFS` sans écrêtage.
+
+### Correction v1.6 — ouverture plus naturelle
+
+L'ancien accueil obligeait la même voix à prononcer trois phrases complètes dans trois langues et durait environ 10 à 11 secondes. Il est remplacé par un sélecteur de 3,15 à 3,45 secondes : « Bonjour. Goedendag. Guten Tag. Français, Nederlands oder Deutsch ? ».
+
+Après le choix, ElevenLabs applique maintenant un preset vocal natif : `Adrien` pour le français belge, `Petra Vlaams` pour le néerlandais belge et `Otto` pour l'allemand. Les textes de présentation ont été réécrits dans un registre conversationnel propre à chaque langue.
+
+Conversations de validation : FR `conv_3001m07y9vrsfqeahadcqvnd9fts`, NL `conv_9101m07yagrvf53b0c3nqc1k007z`, DE `conv_6001m07yaxzvfv29nm6c3xykcsrc`. Les trois sélecteurs, présentations et réponses tourbe/Fagnes ont été générés en audio µ-law 8 kHz sans erreur ni silence interne supérieur à 550 ms.
+
+### Correction v1.7 — entrée plus chaleureuse
+
+Le sélecteur trop sec de la v1.6 est remplacé par un véritable accueil : « Bonjour et bienvenue. Goedendag en welkom. Guten Tag und herzlich willkommen. Français, Nederlands oder Deutsch ? ». Il dure de `6,01 à 6,46 s`, contre environ 3 secondes auparavant, mais ne ressemble plus à une simple énumération de menu.
+
+La voix d'ouverture est plus souple et légèrement ralentie (`stabilité 0,55`, `similarité 0,80`, `vitesse 0,95`). Après le choix, la présentation commence désormais par « Très bien, merci », « Prima, dank u » ou « Sehr gern », puis conserve la voix native de la langue.
+
+Conversations de validation : FR `conv_8701m07ykj26f8xa6ebabja4n2cm`, NL `conv_0901m07ym1xxerfb59vv61c6ayfw`, DE `conv_3901m07yn9qqegeatrvsqxc7453k`. Les trois sessions ont produit le sélecteur, la présentation localisée et la réponse métier attendue, avec trois événements audio chacune.
+
+### Correction v1.8 — question complète et débit ralenti
+
+L'accueil actif dit maintenant : « Bonjour et bienvenue. Goedendag en welkom. Guten Tag und herzlich willkommen. Vous préférez le français, Nederlands oder Deutsch ? ». La vitesse passe de `0,95` à `0,90` afin de laisser respirer les trois salutations et la question.
+
+Conversation de validation : FR `conv_3601m07ywxb5f78v24tcdvz3xcam`. L'accueil dure `7,21 s`, puis le choix « français » déclenche correctement la présentation native attendue.
+
+### Correction v1.9 — suppression de la marque dans le voicebot
+
+Toute mention de Banana Navy a été supprimée de l'identité système, de la base de connaissances vocale et des présentations française, néerlandaise et allemande. La ligne se présente désormais uniquement comme la « ligne d'information Feux en Milieu Naturel ».
+
+Conversation de validation : FR `conv_5301m07z7qrnetas77qpfrxa3jdw`. La transcription réelle confirme que la marque n'est prononcée ni dans l'accueil ni dans la présentation.
 
 ## Configuration active
 
 - Agent : `agent_2201m07k477kepfsq9p5h8bh4x1g`
 - Branche : `agtbrch_1101m07k47s2estbzstzye6f97px`
 - Numéro Twilio inbound : `+32 71 49 98 17`
-- Affectation vérifiée : agent `Feux de Forêt — Inbound (BE)`
-- Voix : `Samuel - Bold, Coarse and Serious`, français belge
+- Affectation vérifiée : agent `Feux en Milieu Naturel — Inbound (BE)`
+- Voix : `Adrien`, professionnelle française belge, calme et informative
 - Modèle vocal : `eleven_flash_v2_5`
-- Stabilité : `0,78`
-- Similarité : `0,85`
-- Vitesse : `1,08`
+- Réglages de l'ouverture : stabilité `0,55` ; similarité `0,80` ; vitesse `0,90`
+- Réglages des voix natives après sélection : stabilité `0,70` ; similarité `0,82` ; vitesse `1,00`
 - Prise de tour : `turn_v3`, réactivité `normal`, délai `7 s`
 - Délai souple et remplissages : désactivés
 - Parole libre avant `end_call` désactivée ; clôture contrôlée « Merci de votre appel. »

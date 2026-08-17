@@ -1,6 +1,6 @@
-# Voicebot Feux de Forêt — Belgique
+# Voicebot Feux en Milieu Naturel — Belgique
 
-Socle de conception et landing page pour un assistant vocal **inbound** multilingue d'information et d'orientation face aux feux de forêt et de végétation. La population appelle volontairement le 071 49 98 17, pose ses questions librement et reçoit des réponses fondées sur des sources officielles.
+Socle de conception et landing page pour un assistant vocal **inbound** multilingue d'information et d'orientation face aux feux en milieu naturel. La population appelle volontairement le 071 49 98 17, pose ses questions librement et reçoit des réponses fondées sur des sources officielles.
 
 Le bot est une couche complémentaire aux autorités. Il ne remplace ni le 112, ni BE-Alert, ni les services de secours. L'agent vocal de test est configuré et relié au numéro inbound ci-dessous.
 
@@ -13,14 +13,14 @@ npm install
 npm run dev
 ```
 
-La démonstration vocale utilise par défaut l'agent ElevenLabs `Feux de Forêt — Inbound (BE)`. Pour tester une branche ou un autre agent, copier `.env.example` vers `.env` et remplacer `VITE_ELEVENLABS_AGENT_ID`.
+La démonstration vocale utilise par défaut l'agent ElevenLabs `Feux en Milieu Naturel — Inbound (BE)`. Pour tester une branche ou un autre agent, copier `.env.example` vers `.env` et remplacer `VITE_ELEVENLABS_AGENT_ID`.
 
 ## Agent ElevenLabs
 
-- Nom : `Feux de Forêt — Inbound (BE)`
+- Nom : `Feux en Milieu Naturel — Inbound (BE)`
 - Agent ID : `agent_2201m07k477kepfsq9p5h8bh4x1g`
 - Mode : inbound, numéro attaché
-- Langues : français, néerlandais, allemand et anglais
+- Langues proposées à l'accueil : français, néerlandais et allemand
 - Téléphonie : numéro Twilio `+3271499817`, appels entrants, affecté à la branche principale
 - Audio : enregistré pendant les appels de test, avec annonce préalable
 - Transcriptions : conservation maximale configurée à 30 jours
@@ -40,4 +40,5 @@ La démonstration vocale utilise par défaut l'agent ElevenLabs `Feux de Forêt 
 - Le bot ne collecte pas de détails avant d'avoir donné cette consigne.
 - Il ne décide jamais seul d'une évacuation de quartier et ne relaie que les ordres provenant d'une source officielle authentifiée.
 - Il ne fournit ni prévision de propagation, ni itinéraire improvisé, ni conseil de lutte contre un feu établi.
-- Les réponses sont courtes, répétables et disponibles en français, néerlandais, allemand et anglais.
+- Les réponses sont courtes et répétables dans les trois langues nationales : français, néerlandais et allemand.
+- Les feux de tourbe et les Hautes Fagnes ont un module dédié : combustion souterraine, reprise possible après plusieurs jours et vérification obligatoire des avis et fermetures du jour.

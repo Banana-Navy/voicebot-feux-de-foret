@@ -33,7 +33,7 @@
 
 @media(max-width:370px){.hero-copy h1{font-size:28px}.hero-copy>p:not(.eyebrow){font-size:12.5px}.hero-actions .button{font-size:11.5px}}
 
-@media(min-width:700px){.site-header{height:92px}.brand img{width:235px}.header-call{padding:12px 19px}.header-call img{width:25px;height:25px}.hero{min-height:720px}.hero-copy{padding-bottom:90px}.section,.operations,.technology,.sources{padding-top:104px;padding-bottom:104px}}
+@media(min-width:700px){.site-header{height:92px}.brand img{width:235px}.header-call{padding:12px 19px}.header-call img{width:25px;height:25px}.hero{width:100%;min-height:max(720px,calc(100svh - 125px))}.hero-copy{padding-bottom:90px}.section,.operations,.technology,.sources{padding-top:104px;padding-bottom:104px}}
 
 /* Footer clair : contraste des marques et cohérence avec la palette du site. */
 .footer{background:#eadbc8;color:var(--coal)}
@@ -92,13 +92,14 @@
 
 @media(max-width:699px) and (prefers-reduced-motion:no-preference){
   .motion-ready .bento-stack{gap:24px}
-  .motion-ready .bento-stack>.bento-card{position:sticky;top:var(--stack-top,92px);z-index:calc(10 + var(--bento-index));transform-origin:center top;will-change:transform,opacity;transition:opacity .28s ease,transform .18s linear,box-shadow .28s ease}
-  .motion-ready .bento-stack>.bento-card.reveal{opacity:0;transform:translate3d(0,var(--stack-offset,28px),0) scale(var(--stack-scale,.965))}
-  .motion-ready .bento-stack>.bento-card.reveal.is-visible{opacity:var(--stack-opacity,1);transform:translate3d(0,var(--stack-offset,0),0) scale(var(--stack-scale,1));box-shadow:0 var(--stack-shadow-y,18px) var(--stack-shadow-blur,38px) rgba(35,27,21,var(--stack-shadow-alpha,.2))}
+  .motion-ready .bento-stack>.bento-card{position:sticky;top:var(--stack-top,92px);z-index:calc(10 + var(--bento-index));transform-origin:center top;will-change:transform;transition:transform .18s linear,box-shadow .28s ease}
+  .motion-ready .bento-stack>.bento-card.reveal{opacity:1!important;transform:translate3d(0,var(--stack-offset,28px),0) scale(var(--stack-scale,.965))}
+  .motion-ready .bento-stack>.bento-card.reveal.is-visible{opacity:1!important;transform:translate3d(0,var(--stack-offset,0),0) scale(var(--stack-scale,1));box-shadow:0 var(--stack-shadow-y,18px) var(--stack-shadow-blur,38px) rgba(35,27,21,var(--stack-shadow-alpha,.2))}
 }
 
 /* Desktop bento motion: a restrained pointer-following tilt and warm highlight. */
-.bento-card{--tilt-x:0deg;--tilt-y:0deg;--glow-x:50%;--glow-y:50%;position:relative;isolation:isolate}
+.bento-card{--tilt-x:0deg;--tilt-y:0deg;--glow-x:50%;--glow-y:50%;position:relative;isolation:isolate;opacity:1!important;background-color:#fff!important}
+.motion-ready .bento-card.reveal,.motion-ready .bento-card.reveal.is-visible{opacity:1!important}
 .bento-card>*{position:relative;z-index:1}
 .bento-card:before{content:"";position:absolute;z-index:0;inset:0;border-radius:inherit;background:radial-gradient(280px circle at var(--glow-x) var(--glow-y),rgba(255,182,51,.2),transparent 62%);opacity:0;transition:opacity .3s ease;pointer-events:none}
 
@@ -136,7 +137,7 @@
 .protection-grid h3{color:#7f1712}
 .protection-grid ul{color:#454b49}
 
-/* Identité Feux de Forêt fournie : emblème exact + signature typographique. */
+/* Identité Feux en Milieu Naturel fournie : emblème exact + signature typographique. */
 .brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;min-width:0}
 .brand img{width:54px;height:54px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 5px 8px rgba(116,25,17,.18))}
 .brand-copy{display:grid;line-height:.94;letter-spacing:-.035em;white-space:nowrap;font-family:"Manrope",sans-serif}

@@ -23,7 +23,7 @@ const documentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/knowle
   method: 'PATCH',
   headers,
   body: JSON.stringify({
-    name: 'Feux de Forêt — Base opérationnelle contrôlée — 2026.08.17',
+    name: 'Feux en Milieu Naturel — Base opérationnelle contrôlée — 2026.08.17',
     content: knowledgeText,
   }),
 });
@@ -37,28 +37,34 @@ if (!agentResponse.ok) throw new Error(`Lecture agent impossible (${agentRespons
 const conversation = structuredClone(agent.conversation_config);
 conversation.agent.prompt.prompt = systemPrompt;
 conversation.agent.first_message =
-  "Bienvenue sur la ligne Feux de Forêt de Banana Navy. Cet appel de test est enregistré. " +
-  "Danger immédiat : raccrochez et appelez le cent douze. " +
-  "Voulez-vous signaler un feu, ou obtenir des informations ?";
+  "Bonjour et bienvenue. Goedendag en welkom. Guten Tag und herzlich willkommen. Vous préférez le français, Nederlands oder Deutsch ?";
+// The hidden bootstrap language must differ from every language offered to the
+// caller. This makes language_detection apply a preset even when Dutch is
+// selected; otherwise the base Dutch voice/model can remain active by mistake.
+conversation.agent.language = 'en';
+const presetTemplate = structuredClone(
+  conversation.language_presets?.nl ?? conversation.language_presets?.de ?? conversation.language_presets?.fr,
+);
+if (!presetTemplate?.overrides) throw new Error('Impossible de créer les presets de langue.');
 const localized = {
-  nl: 'Welkom bij de Bosbrandlijn van Banana Navy. Dit testgesprek wordt opgenomen. Onmiddellijk gevaar: hang op en bel 112. Wilt u een brand melden of informatie krijgen?',
-  de: 'Willkommen bei der Waldbrand-Hotline von Banana Navy. Dieses Testgespräch wird aufgezeichnet. Unmittelbare Gefahr: Legen Sie auf und rufen Sie 112 an. Möchten Sie einen Brand melden oder Informationen erhalten?',
-  en: 'Welcome to Banana Navy’s Wildfire Line. This test call is recorded. Immediate danger: hang up and call 112. Do you want to report a fire or get information?',
+  fr: { voiceId: 'IpTJxgMFj1wbxpha4zxm', stability: 0.55, similarity: 0.80, speed: 0.90 },
+  nl: { voiceId: '9kBSa5emtWArU7U0792v', stability: 0.52, similarity: 0.82, speed: 0.95 },
+  de: { voiceId: 'FTNCalFNG5bRnkkaP5Ug', stability: 0.55, similarity: 0.80, speed: 1.05 },
 };
-for (const [language, message] of Object.entries(localized)) {
-  const preset = conversation.language_presets?.[language];
-  if (preset?.overrides?.agent) preset.overrides.agent.first_message = message;
-}
 conversation.asr.user_input_audio_format = 'ulaw_8000';
 conversation.asr.keywords = Array.from(new Set([
   ...(conversation.asr.keywords ?? []), '071 49 98 17', 'zéro septante-et-un', 'quarante-neuf', 'nonante-huit',
-]));
+  'français', 'Nederlands', 'néerlandais', 'Vlaams', 'Deutsch', 'allemand',
+  'tourbe', 'tourbière', 'Hautes Fagnes', 'feu souterrain',
+  'veen', 'veenbrand', 'Hoge Venen', 'smeulen',
+  'Torf', 'Torfbrand', 'Hohes Venn', 'Schwelbrand',
+])).filter((keyword) => !['English', 'anglais', 'Engels', 'peat', 'peat fire', 'High Fens', 'smouldering'].includes(keyword));
 conversation.tts.agent_output_audio_format = 'ulaw_8000';
 conversation.tts.model_id = 'eleven_flash_v2_5';
-conversation.tts.voice_id = 'KQmyXAYSiYXdRqlwDQFX';
-conversation.tts.stability = 0.78;
-conversation.tts.similarity_boost = 0.85;
-conversation.tts.speed = 1.08;
+conversation.tts.voice_id = '9kBSa5emtWArU7U0792v';
+conversation.tts.stability = 0.52;
+conversation.tts.similarity_boost = 0.82;
+conversation.tts.speed = 0.95;
 conversation.tts.optimize_streaming_latency = 3;
 conversation.tts.expressive_mode = false;
 conversation.turn.turn_model = 'turn_v3';
@@ -87,7 +93,12 @@ conversation.agent.prompt.rag = {
   embedding_model: 'multilingual_e5_large_instruct',
   max_documents_length: 18000,
 };
-conversation.agent.prompt.llm = 'claude-sonnet-4-5';
+// Gemini Flash is used only for the very first routing turn because it calls
+// language_detection reliably. Each language preset then switches the live
+// conversation to Haiku, which is faster after routing and keeps responses
+// natural. The voice is also locked per preset so accents cannot leak across
+// languages.
+conversation.agent.prompt.llm = 'gemini-2.5-flash';
 conversation.agent.prompt.backup_llm_config = { preference: 'override', order: ['claude-haiku-4-5'] };
 conversation.agent.prompt.temperature = 0;
 conversation.agent.prompt.max_tokens = 180;
@@ -95,16 +106,41 @@ const builtIns = conversation.agent.prompt.built_in_tools ?? {};
 if (builtIns.end_call) {
   builtIns.end_call.description =
     "Lorsque l'appelant confirme qu'il raccroche, demande à terminer ou n'a plus de question, " +
-    "prononce exactement une fois « Merci de votre appel. », puis termine immédiatement l'appel. " +
-    "Utilise cette même phrase dans system__message_to_speak et n'ajoute aucune autre formule.";
+    "prononce exactement une fois la clôture de la langue active : « Merci de votre appel. », " +
+    "« Bedankt voor uw oproep. » ou « Vielen Dank für Ihren Anruf. ». " +
+    "Utilise cette même phrase dans system__message_to_speak, termine immédiatement et n'ajoute rien.";
   builtIns.end_call.pre_tool_speech = 'off';
   builtIns.end_call.force_pre_tool_speech = false;
   builtIns.end_call.tool_call_sound = null;
 }
 if (builtIns.language_detection) {
+  builtIns.language_detection.description =
+    "Change la langue uniquement au choix initial de l'appelant ou s'il demande explicitement une autre langue. " +
+    "Ne rappelle jamais cet outil lorsque l'appelant continue dans la langue déjà active.";
   builtIns.language_detection.pre_tool_speech = 'off';
+  builtIns.language_detection.interruption_mode = 'disable_during_tool_and_turn';
   builtIns.language_detection.force_pre_tool_speech = false;
   builtIns.language_detection.tool_call_sound = null;
+}
+
+conversation.language_presets = {};
+for (const [language, settings] of Object.entries(localized)) {
+  const preset = structuredClone(presetTemplate);
+  preset.overrides ??= {};
+  preset.overrides.agent ??= {};
+  preset.overrides.agent.language = language;
+  preset.overrides.agent.first_message = conversation.agent.first_message;
+  preset.overrides.agent.prompt = {
+    llm: 'claude-haiku-4-5',
+    backup_llm_config: { preference: 'override', order: ['gemini-2.5-flash'] },
+  };
+  preset.overrides.tts = {
+    voice_id: settings.voiceId,
+    stability: settings.stability,
+    similarity_boost: settings.similarity,
+    speed: settings.speed,
+  };
+  conversation.language_presets[language] = preset;
 }
 
 const platform = structuredClone(agent.platform_settings);
@@ -121,7 +157,7 @@ platform.privacy = {
 const updateResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, {
   method: 'PATCH',
   headers,
-  body: JSON.stringify({ name: 'Feux de Forêt — Inbound (BE)', conversation_config: conversation, platform_settings: platform }),
+  body: JSON.stringify({ name: 'Feux en Milieu Naturel — Inbound (BE)', conversation_config: conversation, platform_settings: platform }),
 });
 const update = await updateResponse.json();
 if (!updateResponse.ok) throw new Error(`Mise à jour agent impossible (${updateResponse.status}): ${JSON.stringify(update)}`);
@@ -133,7 +169,7 @@ const phoneResponse = await fetch(`https://api.elevenlabs.io/v1/convai/phone-num
   body: JSON.stringify({
     agent_id: agentId,
     branch_id: 'agtbrch_1101m07k47s2estbzstzye6f97px',
-    label: 'Feux de Forêt — 071 49 98 17',
+    label: 'Feux en Milieu Naturel — 071 49 98 17',
   }),
 });
 const phone = await phoneResponse.json();
@@ -152,6 +188,9 @@ console.log(JSON.stringify({
   input_audio_format: conversation.asr.user_input_audio_format,
   output_audio_format: conversation.tts.agent_output_audio_format,
   voice_id: conversation.tts.voice_id,
+  language_voice_ids: Object.fromEntries(Object.entries(localized).map(([language, settings]) => [language, settings.voiceId])),
+  bootstrap_llm: conversation.agent.prompt.llm,
+  language_llms: Object.fromEntries(Object.keys(localized).map((language) => [language, conversation.language_presets[language].overrides.agent.prompt.llm])),
   tts_model: conversation.tts.model_id,
   stability: conversation.tts.stability,
   similarity_boost: conversation.tts.similarity_boost,

@@ -25,5 +25,14 @@ Chaque dossier contient le journal `session.json`, les segments téléphoniques 
 | `live-v1.3/` | `conv_1501m07v74amf26sw00zgedff2aa` | A révélé une question finale inutile après la prévention. |
 | `live-v1.4/` | `conv_6501m07vb76seh7v9t56z19vcnd3` | A validé la prévention, puis révélé une question finale après la réponse sur le chien. |
 | `live-v1.5/` | `conv_0001m07vjkr2ef2tx83rf8h74zar` | Version finale : interruption correcte, aucune reprise, réponses exactes et clôture unique. |
+| `live-v1.4-trilingual/fr/` | `conv_7901m07xga38e1csh9krhjrz18pr` | Choix français, présentation avec enregistrement et réponse feu de tourbe/Fagnes. |
+| `live-v1.4-trilingual/nl/` | `conv_9301m07xgprmf7z88w0afrpk444n` | Choix Nederlands, présentation et réponse `veenbrand` entièrement en néerlandais. |
+| `live-v1.4-trilingual/de/` | `conv_5401m07xh7p2f4gbb7mkmp2f48kb` | Choix Deutsch, présentation et réponse `Torfbrand` entièrement en allemand. |
+| `live-v1.6-natural-opening/` | FR `conv_3001m07y9vrsfqeahadcqvnd9fts` · NL `conv_9101m07yagrvf53b0c3nqc1k007z` · DE `conv_6001m07yaxzvfv29nm6c3xykcsrc` | Sélecteur raccourci à environ 3 secondes et voix natives par langue. |
+| `live-v1.7-warm-opening/` | FR `conv_8701m07ykj26f8xa6ebabja4n2cm` · NL `conv_0901m07ym1xxerfb59vv61c6ayfw` · DE `conv_3901m07yn9qqegeatrvsqxc7453k` | Accueil trilingue chaleureux de 6 secondes, prosodie adoucie et confirmation naturelle après le choix. |
+| `live-v1.8-warm-slow-opening/` | FR `conv_3601m07ywxb5f78v24tcdvz3xcam` | Question complète « Vous préférez… ? », accueil ralenti à `0,90` et transition française validée. |
+| `live-v1.9-no-brand/` | FR `conv_5301m07z7qrnetas77qpfrxa3jdw` | Présentation active sans mention d'entreprise, validée en conversation réelle. |
 
 Dans `live-v1.5`, les quatre segments durent respectivement `12,47 s`, `7,36 s`, `9,91 s` et `1,05 s`. Leur retranscription est fidèle avec une probabilité de langue française de `1,0`. Aucun segment ne contient de silence supérieur à `220 ms` au seuil de `-42 dB`.
+
+Dans `live-v1.4-trilingual`, chaque conversation contient trois segments : choix de langue, présentation complète et réponse tourbe/Fagnes. Les présentations durent `14,72 s` en français, `14,12 s` en néerlandais et `17,12 s` en allemand. Aucun de ces trois segments ne contient de silence supérieur à `400 ms` au seuil de `-42 dB`, ce qui valide une présentation continue.

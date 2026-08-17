@@ -43,7 +43,6 @@ if (!reducedMotion) {
       card.style.setProperty('--stack-progress', '0');
       card.style.setProperty('--stack-offset', '28px');
       card.style.setProperty('--stack-scale', '.965');
-      card.style.setProperty('--stack-opacity', '.76');
       card.style.setProperty('--stack-shadow-y', '12px');
       card.style.setProperty('--stack-shadow-blur', '26px');
       card.style.setProperty('--stack-shadow-alpha', '.12');
@@ -99,7 +98,6 @@ if (!reducedMotion) {
         card.style.setProperty('--stack-progress', '1');
         card.style.setProperty('--stack-offset', '0px');
         card.style.setProperty('--stack-scale', '1');
-        card.style.setProperty('--stack-opacity', '1');
         return;
       }
       const stickyTop = Number.parseFloat(card.style.getPropertyValue('--stack-top')) || 92;
@@ -108,7 +106,6 @@ if (!reducedMotion) {
       card.style.setProperty('--stack-progress', stackProgress.toFixed(3));
       card.style.setProperty('--stack-offset', `${((1 - stackProgress) * 28).toFixed(2)}px`);
       card.style.setProperty('--stack-scale', (.965 + stackProgress * .035).toFixed(4));
-      card.style.setProperty('--stack-opacity', (.76 + stackProgress * .24).toFixed(3));
       card.style.setProperty('--stack-shadow-y', `${(12 + stackProgress * 10).toFixed(2)}px`);
       card.style.setProperty('--stack-shadow-blur', `${(26 + stackProgress * 18).toFixed(2)}px`);
       card.style.setProperty('--stack-shadow-alpha', (.12 + stackProgress * .12).toFixed(3));
