@@ -7,6 +7,7 @@ if (!process.argv.includes('--confirm')) throw new Error('Ajoutez --confirm pour
 
 const root = resolve(import.meta.dirname, '..');
 const agentId = 'agent_2201m07k477kepfsq9p5h8bh4x1g';
+const documentId = '89AM7w3ggzzZpzmAiiRT';
 const headers = { 'xi-api-key': apiKey, 'content-type': 'application/json' };
 const knowledgeFiles = [
   'knowledge/base-connaissances.md',
@@ -19,36 +20,44 @@ const sections = await Promise.all(knowledgeFiles.map(async (file) => {
   return `# Fichier local : ${file}\n\n${content}`;
 }));
 const knowledgeText = sections.join('\n\n---\n\n');
+const systemPrompt = await readFile(resolve(root, 'agent/system-prompt.md'), 'utf8');
 
-const documentResponse = await fetch('https://api.elevenlabs.io/v1/convai/knowledge-base/text', {
-  method: 'POST',
+const documentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/knowledge-base/${documentId}`, {
+  method: 'PATCH',
   headers,
   body: JSON.stringify({
-    name: 'Feux de Forêt 1771 — Base officielle et retours d’expérience — 2026.08.17',
-    text: knowledgeText,
+    name: 'Feux de Forêt — Base officielle et retours d’expérience — 2026.08.17',
+    content: knowledgeText,
   }),
 });
 const document = await documentResponse.json();
-if (!documentResponse.ok) throw new Error(`Création KB impossible (${documentResponse.status}): ${JSON.stringify(document)}`);
+if (!documentResponse.ok) throw new Error(`Mise à jour KB impossible (${documentResponse.status}): ${JSON.stringify(document)}`);
 
 const agentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { headers });
 const agent = await agentResponse.json();
 if (!agentResponse.ok) throw new Error(`Lecture agent impossible (${agentResponse.status}).`);
 
 const conversation = structuredClone(agent.conversation_config);
+conversation.agent.prompt.prompt = systemPrompt;
 conversation.agent.first_message =
-  "Bienvenue au dix-sept septante-et-un, le service vocal d'information sur les feux de forêt et de végétation. " +
+  "Bienvenue sur la ligne d'information Feux de Forêt de Banana Navy. " +
   "Cet appel est enregistré à des fins de test et d'amélioration du service. " +
+  "Cette ligne ne remplace ni le dix-sept septante-et-un ni le cent douze. " +
   "Pour une urgence immédiate, raccrochez et appelez le cent douze. Comment puis-je vous aider ?";
 const localized = {
-  nl: 'Welkom bij 1771, de telefonische informatiedienst over bos- en natuurbranden. Dit gesprek wordt opgenomen om de dienst te testen en te verbeteren. Bel bij onmiddellijk gevaar 112. Hoe kan ik u helpen?',
-  de: 'Willkommen bei 1771, dem telefonischen Informationsdienst zu Wald- und Vegetationsbränden. Dieses Gespräch wird zu Test- und Verbesserungszwecken aufgezeichnet. Rufen Sie bei unmittelbarer Gefahr die 112 an. Wie kann ich Ihnen helfen?',
-  en: 'Welcome to 1771, the voice information service for wildfires and vegetation fires. This call is recorded for testing and service improvement. For immediate danger, hang up and call 112. How can I help you?',
+  nl: 'Welkom bij de informatielijn Bos- en Natuurbranden van Banana Navy. Dit gesprek wordt opgenomen om de dienst te testen en te verbeteren. Deze lijn vervangt noch 1771, noch 112. Bel bij onmiddellijk gevaar 112. Hoe kan ik u helpen?',
+  de: 'Willkommen bei der Informationslinie Wald- und Vegetationsbrände von Banana Navy. Dieses Gespräch wird zu Test- und Verbesserungszwecken aufgezeichnet. Diese Linie ersetzt weder 1771 noch 112. Rufen Sie bei unmittelbarer Gefahr die 112 an. Wie kann ich Ihnen helfen?',
+  en: 'Welcome to Banana Navy’s Wildfire Information Line. This call is recorded for testing and service improvement. This line does not replace 1771 or 112. For immediate danger, hang up and call 112. How can I help you?',
 };
 for (const [language, message] of Object.entries(localized)) {
   const preset = conversation.language_presets?.[language];
   if (preset?.overrides?.agent) preset.overrides.agent.first_message = message;
 }
+conversation.asr.user_input_audio_format = 'ulaw_8000';
+conversation.asr.keywords = Array.from(new Set([
+  ...(conversation.asr.keywords ?? []), '071 49 98 17', 'zéro septante-et-un', 'quarante-neuf', 'nonante-huit',
+]));
+conversation.tts.agent_output_audio_format = 'ulaw_8000';
 conversation.agent.prompt.knowledge_base = [{
   type: 'text',
   name: document.name,
@@ -77,10 +86,23 @@ platform.privacy = {
 const updateResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, {
   method: 'PATCH',
   headers,
-  body: JSON.stringify({ conversation_config: conversation, platform_settings: platform }),
+  body: JSON.stringify({ name: 'Feux de Forêt — Inbound (BE)', conversation_config: conversation, platform_settings: platform }),
 });
 const update = await updateResponse.json();
 if (!updateResponse.ok) throw new Error(`Mise à jour agent impossible (${updateResponse.status}): ${JSON.stringify(update)}`);
+
+const phoneNumberId = 'phnum_2001kg33d8jcf1xskxqqz6ryqtk3';
+const phoneResponse = await fetch(`https://api.elevenlabs.io/v1/convai/phone-numbers/${phoneNumberId}`, {
+  method: 'PATCH',
+  headers,
+  body: JSON.stringify({
+    agent_id: agentId,
+    branch_id: 'agtbrch_1101m07k47s2estbzstzye6f97px',
+    label: 'Feux de Forêt — 071 49 98 17',
+  }),
+});
+const phone = await phoneResponse.json();
+if (!phoneResponse.ok) throw new Error(`Rafraîchissement téléphonie impossible (${phoneResponse.status}): ${JSON.stringify(phone)}`);
 
 console.log(JSON.stringify({
   agent_id: agentId,
@@ -90,4 +112,8 @@ console.log(JSON.stringify({
   rag_enabled: true,
   audio_recording: true,
   retention_days: 30,
+  phone_number: phone.phone_number,
+  phone_number_id: phone.phone_number_id,
+  input_audio_format: conversation.asr.user_input_audio_format,
+  output_audio_format: conversation.tts.agent_output_audio_format,
 }, null, 2));

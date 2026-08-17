@@ -26,7 +26,8 @@ const sources = await readFile(resolve(root, 'docs/sources-officielles.md'), 'ut
 
 const conversation = structuredClone(reference.conversation_config);
 conversation.agent.first_message =
-  "Bienvenue au dix-sept septante-et-un, le service vocal d'information sur les feux de forêt et de végétation. " +
+  "Bienvenue sur la ligne d'information Feux de Forêt de Banana Navy. " +
+  "Cette ligne ne remplace ni le dix-sept septante-et-un ni le cent douze. " +
   "Pour une urgence immédiate, raccrochez et appelez le cent douze. Comment puis-je vous aider ?";
 conversation.agent.language = 'fr';
 conversation.agent.disable_first_message_interruptions = false;
@@ -60,9 +61,9 @@ conversation.agent.prompt.built_in_tools = {
 };
 
 const presetMessages = {
-  nl: 'Welkom bij 1771, de telefonische informatiedienst over bos- en natuurbranden. Bel bij onmiddellijk gevaar 112. Hoe kan ik u helpen?',
-  de: 'Willkommen bei 1771, dem telefonischen Informationsdienst zu Wald- und Vegetationsbränden. Rufen Sie bei unmittelbarer Gefahr die 112 an. Wie kann ich Ihnen helfen?',
-  en: 'Welcome to 1771, the voice information service for wildfires and vegetation fires. For immediate danger, hang up and call 112. How can I help you?',
+  nl: 'Welkom bij de informatielijn Bos- en Natuurbranden van Banana Navy. Deze lijn vervangt noch 1771, noch 112. Bel bij onmiddellijk gevaar 112. Hoe kan ik u helpen?',
+  de: 'Willkommen bei der Informationslinie Wald- und Vegetationsbrände von Banana Navy. Diese Linie ersetzt weder 1771 noch 112. Rufen Sie bei unmittelbarer Gefahr die 112 an. Wie kann ich Ihnen helfen?',
+  en: 'Welcome to Banana Navy’s Wildfire Information Line. This line does not replace 1771 or 112. For immediate danger, hang up and call 112. How can I help you?',
 };
 for (const [language, message] of Object.entries(presetMessages)) {
   const preset = conversation.language_presets[language];
@@ -72,7 +73,7 @@ for (const [language, message] of Object.entries(presetMessages)) {
 
 conversation.asr.keywords = [
   'feu de forêt', 'incendie', 'fumée', 'évacuation', 'BE-Alert', 'cent douze',
-  '1771', 'dix-sept septante-et-un', 'brûlure', 'respirer', 'forêt', 'broussailles',
+  '071 49 98 17', '1771', 'dix-sept septante-et-un', 'brûlure', 'respirer', 'forêt', 'broussailles',
   'bosbrand', 'natuurbrand', 'Waldbrand', 'wildfire',
 ];
 conversation.turn.turn_eagerness = 'patient';
@@ -103,8 +104,8 @@ platform.guardrails = { ...(platform.guardrails ?? {}) };
 delete platform.guardrails.custom;
 
 const payload = {
-  name: 'Feux de Forêt 1771 — Inbound (BE)',
-  tags: ['banana-navy', 'wildfire', '1771', 'inbound', 'belgium', 'multilingual'],
+  name: 'Feux de Forêt — Inbound (BE)',
+  tags: ['banana-navy', 'wildfire', 'inbound', 'belgium', 'multilingual'],
   conversation_config: conversation,
   platform_settings: platform,
 };

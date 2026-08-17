@@ -6,7 +6,7 @@ Version vérifiée le 17 août 2026. Ces événements sont des cas historiques d
 
 Le SPW indique qu'un feu de broussailles a détruit environ 8 à 10 hectares dans le camp militaire de Lagland à Arlon, et qu'un autre incendie a ravagé près de 3 hectares de végétation et de bois à Han-sur-Lesse. La communication régionale a souligné la sécheresse des herbes mortes et des rafales dépassant localement 50 km/h.
 
-Enseignements pour le 1771 :
+Enseignements pour le voicebot :
 
 - demander un lieu précis, des repères et le meilleur accès ;
 - distinguer feu établi, fumée seule et départ de feu ;
@@ -20,7 +20,7 @@ Source : https://environnement.wallonie.be/home/a-la-une/actualites/actualites/d
 
 Le Département de la Nature et des Forêts a hissé le drapeau rouge et interdit l'accès à des zones sensibles. Des panneaux ont été installés aux entrées des chemins concernés et une carte des chemins interdits a été publiée. La fermeture devait rester en vigueur jusqu'à l'amélioration des conditions.
 
-Enseignements pour le 1771 :
+Enseignements pour le voicebot :
 
 - une interdiction est dynamique : annoncer l'autorité, la zone et l'heure de vérification ;
 - orienter vers la carte ou le site officiel de la zone ;
@@ -33,7 +33,7 @@ Source : https://environnement.wallonie.be/home/a-la-une/actualites/actualites/d
 
 En avril 2026, la surveillance des agents du DNF a été renforcée, les gestionnaires de réserves informés et certaines cartes de chemins fermés publiées. En juillet 2026, le risque a été annoncé élevé en forêt et très élevé dans les milieux ouverts, particulièrement dans les provinces de Liège, Luxembourg et Namur.
 
-Enseignements pour le 1771 :
+Enseignements pour le voicebot :
 
 - expliquer que risque élevé ne signifie pas qu'un feu est en cours ;
 - distinguer le niveau régional des décisions d'un bourgmestre, gouverneur ou gestionnaire de site ;
@@ -49,7 +49,7 @@ Sources :
 
 Un feu rapidement propagé par des vents forts a menacé plusieurs localités près d'Ierapetra. Les habitants ont reçu un message 112 diffusé par cellule pour évacuer. Les autorités ont engagé 155 pompiers, 47 véhicules, des équipes terrestres et sept hélicoptères. Copernicus EMS Rapid Mapping a été activé pour cartographier l'étendue du feu.
 
-Enseignements pour le 1771 :
+Enseignements pour le voicebot :
 
 - un message d'évacuation doit préciser la zone concernée et la destination ;
 - le bot doit répéter fidèlement le message officiel sans ajouter d'itinéraire ;
@@ -62,7 +62,7 @@ Source Commission européenne/JRC : https://data.jrc.ec.europa.eu/dataset/9d8d35
 
 La Commission européenne rapporte plus de 130 grands feux, presque 300 routes fermées et plus de 35 900 personnes évacuées. L'Espagne a activé le mécanisme européen de protection civile ; des équipes et véhicules de plusieurs pays ont été déployés.
 
-Enseignements pour le 1771 :
+Enseignements pour le voicebot :
 
 - ne jamais proposer un itinéraire à partir d'informations générales ;
 - orienter vers la police, la commune ou le service routier officiel pour les routes ouvertes ;
@@ -75,7 +75,7 @@ Source Commission européenne : https://civil-protection-humanitarian-aid.ec.eur
 
 L'OMS Europe rapporte qu'un état d'urgence et plusieurs ordres d'évacuation ont concerné jusqu'à vingt localités. L'événement a mis en évidence les effets de la fumée, de la chaleur et du stress, ainsi que la nécessité d'aider les enfants, personnes âgées, personnes enceintes et malades chroniques.
 
-Enseignements pour le 1771 :
+Enseignements pour le voicebot :
 
 - inclure systématiquement les besoins des personnes vulnérables ;
 - conseiller de suivre les ordres locaux et de réduire l'exposition à la fumée ;

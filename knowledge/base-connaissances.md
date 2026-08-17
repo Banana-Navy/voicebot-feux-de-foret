@@ -2,7 +2,7 @@
 
 Cette base reprend uniquement les invariants officiels. Les instructions locales et les informations temps réel restent hors de ce fichier.
 
-Le 1771 fonctionne en inbound : la population l'appelle pour obtenir des renseignements et poser des questions libres. Il ne réalise pas de prospection ni d'appels d'alerte sortants et ne se substitue pas à BE-Alert.
+Le 071 49 98 17 est la ligne inbound de ce voicebot : la population l'appelle pour obtenir des renseignements et poser des questions libres. Il ne réalise pas de prospection ni d'appels d'alerte sortants et ne se substitue ni au 1771, ni au 112, ni à BE-Alert.
 
 ## Invariants
 

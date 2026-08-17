@@ -1,10 +1,10 @@
-# Agent ElevenLabs — Feux de Forêt 1771
+# Agent ElevenLabs — Feux de Forêt
 
 Créé le 17 août 2026 dans le workspace ElevenLabs partagé.
 
 | Paramètre | Valeur |
 |---|---|
-| Nom | Feux de Forêt 1771 — Inbound (BE) |
+| Nom | Feux de Forêt — Inbound (BE) |
 | Agent ID | `agent_2201m07k477kepfsq9p5h8bh4x1g` |
 | Mode | Inbound |
 | Langues | FR, NL, DE, EN |
@@ -16,7 +16,7 @@ Créé le 17 août 2026 dans le workspace ElevenLabs partagé.
 | Knowledge Base | `89AM7w3ggzzZpzmAiiRT` |
 | RAG | Activé, modèle multilingue |
 
-La base ElevenLabs est synchronisée depuis les fichiers locaux `knowledge/base-connaissances.md`, `knowledge/incidents-recents.md`, `docs/sources-officielles.md` et `docs/plan-voicebot.md`. Le document distant porte le nom `Feux de Forêt 1771 — Base officielle et retours d’expérience — 2026.08.17`.
+La base ElevenLabs est synchronisée depuis les fichiers locaux `knowledge/base-connaissances.md`, `knowledge/incidents-recents.md`, `docs/sources-officielles.md` et `docs/plan-voicebot.md`. Le document distant porte le nom `Feux de Forêt — Base officielle et retours d’expérience — 2026.08.17`.
 
 ## Téléphonie à connecter ultérieurement
 

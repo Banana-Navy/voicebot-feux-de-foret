@@ -4,11 +4,11 @@
 
 Répondre aux appels entrants de la population et donner en quelques secondes une réponse officielle, compréhensible et adaptée à la question, au lieu et à la situation. L'appelant peut poser librement des questions avant, pendant ou après un feu de forêt. Le bot informe et oriente ; il ne commande pas les secours et ne remplace jamais le 112.
 
-Le public appelle le voicebot inbound via le **1771**. Il ne s'agit pas d'un dispositif d'appels sortants. Chaque support doit préciser sans ambiguïté : « 1771 = renseignements et orientation ; 112 = urgence ».
+Le public appelle ce voicebot inbound via le **071 49 98 17**. Il ne s'agit pas d'un dispositif d'appels sortants. Chaque support doit préciser sans ambiguïté : « 071 49 98 17 = cette ligne d'information ; elle ne remplace ni le 1771 ni le 112 ; 112 = urgence ».
 
 ## Expérience d'un appel entrant
 
-1. Le 1771 décroche et annonce sa mission ainsi que la distinction avec le 112.
+1. Le 071 49 98 17 décroche et annonce sa mission ainsi que la distinction avec le 1771 et le 112.
 2. Il détecte la langue ou laisse choisir FR, NL, DE ou EN.
 3. Il demande : « Comment puis-je vous aider concernant les feux de forêt ou de végétation ? »
 4. L'appelant pose ses questions librement. Le bot répond depuis la base officielle, pose seulement les questions de contexte nécessaires et conserve le fil de la conversation.
@@ -17,7 +17,7 @@ Le public appelle le voicebot inbound via le **1771**. Il ne s'agit pas d'un dis
 
 ## Ouverture de chaque conversation
 
-1. Accueillir : « Bienvenue au 1771, le service vocal d'information sur les feux de forêt et de végétation. Pour une urgence immédiate, appelez le 112. »
+1. Accueillir : « Bienvenue sur la ligne d'information Feux de Forêt de Banana Navy. Cette ligne ne remplace ni le 1771 ni le 112. Pour une urgence immédiate, raccrochez et appelez le 112. »
 2. Détecter ou demander la langue : FR, NL, DE ou EN.
 3. Demander : « Comment puis-je vous aider ? » et laisser l'appelant formuler sa question sans menu obligatoire.
 4. Si la demande concerne une situation en cours, déterminer avec le minimum de questions si la personne se trouve dans la nature, chez elle à proximité ou sur la route.
@@ -98,7 +98,7 @@ Le bot peut lire, avec provenance et horodatage : messages BE-Alert validés, fl
 
 ## Architecture cible
 
-Appel entrant au 1771/web → couche télécom → accueil et détection de langue → questions libres → triage déterministe permanent → agent conversationnel → base officielle versionnée → outils officiels en lecture seule → orientation 112/humain → journal d'audit pseudonymisé.
+Appel entrant au 071 49 98 17/web → couche télécom → accueil et détection de langue → questions libres → triage déterministe permanent → agent conversationnel → base officielle versionnée → outils officiels en lecture seule → orientation 112/humain → journal d'audit pseudonymisé.
 
 Les règles « 112 », « ne pas évacuer spontanément », « ne pas lutter contre un feu établi » et « ne pas inventer un ordre local » sont exécutées hors LLM. Toute mise à jour d'un message opérationnel exige une source, un territoire, une heure de début, une heure d'expiration et un approbateur.
 
