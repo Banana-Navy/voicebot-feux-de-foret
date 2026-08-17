@@ -118,3 +118,16 @@
 .protection-grid article>img{padding:10px;border:1px solid rgba(189,33,25,.15);border-radius:18px;background:#fff;box-shadow:0 10px 22px rgba(90,54,28,.12)}
 .protection-grid h3{color:#7f1712}
 .protection-grid ul{color:#454b49}
+
+/* Identité Feux de Forêt fournie : emblème exact + signature typographique. */
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;min-width:0}
+.brand img{width:54px;height:54px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 5px 8px rgba(116,25,17,.18))}
+.brand-copy{display:grid;line-height:.94;letter-spacing:-.035em;white-space:nowrap;font-family:"Manrope",sans-serif}
+.brand-copy strong{font-size:15px;color:var(--coal);font-weight:800}
+.brand-copy em{font-size:15px;color:var(--red);font-style:normal;font-weight:800}
+
+@media(min-width:700px){
+  .brand{gap:12px}
+  .brand img{width:66px;height:66px}
+  .brand-copy strong,.brand-copy em{font-size:20px}
+}
