@@ -43,3 +43,62 @@
 .partner-block,.footer-bottom{border-color:rgba(34,40,41,.18)}
 .partner-logos img{height:88px;padding:12px;background:#fff;border:1px solid rgba(34,40,41,.1);border-radius:14px;filter:drop-shadow(0 6px 10px rgba(34,40,41,.08))}
 .footer-bottom{color:#59605d}
+
+/* Motion system: reveal, parallax, stacking and tactile micro-interactions. */
+.scroll-progress{position:fixed;z-index:60;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--amber),var(--orange),var(--red));transform:scaleX(0);transform-origin:left center;pointer-events:none}
+.hero-art{transform:translate3d(0,var(--hero-parallax,0),0) scale(1.055);transform-origin:center top;will-change:transform}
+.button,.header-call,.scenario-grid article,.operation-visuals figure,.architecture-flow article,.protection-grid article,.incident-grid article,.partner-logos img{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .35s ease,filter .35s ease}
+.header-call{position:relative}
+.button b{transition:transform .3s ease}
+.button:hover,.header-call:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(189,33,25,.32)}
+.button:hover b{transform:translateX(5px)}
+.text-button{transition:color .25s ease,transform .25s ease}
+.text-button:hover{color:var(--red);transform:translateX(4px)}
+.site-header nav a{position:relative}
+.site-header nav a:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
+.site-header nav a:hover:after{transform:scaleX(1);transform-origin:left}
+.faq-list details[open] summary span{transform:rotate(45deg)}
+.faq-list summary span{transition:transform .3s ease}
+.modal.open section{animation:modal-in .35s cubic-bezier(.2,.85,.25,1) both}
+.modal.open .backdrop{animation:fade-in .25s ease both}
+
+@media(hover:hover){
+  .scenario-grid article:hover,.protection-grid article:hover,.incident-grid article:hover{transform:translateY(-8px);box-shadow:0 20px 42px rgba(72,43,25,.13);border-color:rgba(189,33,25,.22)}
+  .operation-visuals figure:hover{transform:translateY(-8px) rotate(.35deg);box-shadow:0 23px 48px rgba(80,48,25,.17)}
+  .architecture-flow article:hover{transform:translateY(-7px);border-color:rgba(255,182,51,.42);box-shadow:0 20px 42px rgba(0,0,0,.2)}
+  .partner-logos img:hover{transform:translateY(-5px) scale(1.03);filter:drop-shadow(0 13px 16px rgba(34,40,41,.14))}
+}
+
+@media(prefers-reduced-motion:no-preference){
+  .motion-ready .hero-copy{animation:none}
+  .motion-ready .reveal{opacity:0;transform:translate3d(0,34px,0);transition:opacity .7s ease var(--reveal-delay,0ms),transform .8s cubic-bezier(.2,.75,.2,1) var(--reveal-delay,0ms)}
+  .motion-ready .reveal.is-visible{opacity:1;transform:none}
+  .motion-ready main h2:after{content:"";display:block;width:70px;height:4px;margin-top:18px;border-radius:99px;background:linear-gradient(90deg,var(--red),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .65s cubic-bezier(.2,.8,.2,1) .2s}
+  .motion-ready main h2.is-visible:after{transform:scaleX(1)}
+  .motion-ready .hero-copy .eyebrow{animation:hero-rise .55s ease .05s both}
+  .motion-ready .hero-copy h1{animation:hero-rise .75s cubic-bezier(.2,.8,.2,1) .12s both}
+  .motion-ready .hero-copy>p:not(.eyebrow){animation:hero-rise .7s ease .25s both}
+  .motion-ready .hero-actions{animation:hero-rise .7s ease .36s both}
+  .motion-ready .operation-visuals figure.is-visible img{animation:art-float 5.5s ease-in-out infinite}
+  .motion-ready .operation-visuals figure:nth-child(2) img{animation-delay:-1.7s}
+  .motion-ready .operation-visuals figure:nth-child(3) img{animation-delay:-3.4s}
+  .header-call:before{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid rgba(255,84,23,.45);animation:call-ring 2.8s ease-out infinite;pointer-events:none}
+}
+
+@media(max-width:699px) and (prefers-reduced-motion:no-preference){
+  .motion-ready .architecture-flow{gap:24px}
+  .motion-ready .architecture-flow article{position:sticky;top:var(--stack-top,92px);box-shadow:0 18px 32px rgba(0,0,0,.24)}
+  .motion-ready .operation-visuals figure:nth-child(odd).is-visible{transform:rotate(-.7deg)}
+  .motion-ready .operation-visuals figure:nth-child(even).is-visible{transform:rotate(.7deg)}
+}
+
+@keyframes hero-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes art-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes call-ring{0%{opacity:.75;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.18)}}
+@keyframes modal-in{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-art,.button,.header-call,.scenario-grid article,.operation-visuals figure,.architecture-flow article,.protection-grid article,.incident-grid article,.partner-logos img{transform:none!important;transition:none!important;animation:none!important}
+}
