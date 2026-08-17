@@ -28,6 +28,16 @@ Dernière vérification : 17 août 2026. Les contenus dynamiques (codes de risqu
 | Suivi européen | Commission européenne — JRC/EFFIS | https://effis.jrc.ec.europa.eu/ | Carte et données de suivi, jamais source unique d'un ordre local |
 | Numéro européen | Union européenne / 112 Belgique | https://112.be/fr/how-call/comment-appeler-le-112 | Le 112 fonctionne dans les 27 États membres |
 
+## Retours d'expérience récents
+
+| Événement | Source officielle | Apport au voicebot |
+|---|---|---|
+| Lagland, Han-sur-Lesse et fermeture des Hautes Fagnes, 2025 | https://environnement.wallonie.be/home/a-la-une/actualites/actualites/drapeau-rouge-dans-les-hautes-fagnes-acces-interdit-en-raison-du-risque-d-incendie.html | Signalement, vent, cartes et interdictions d'accès |
+| Vigilance renforcée en Wallonie, 2026 | https://environnement.wallonie.be/actualite/risque-accru-d-incendie-en-milieux-naturels-vigilance-renforcee-cette-semaine-en-wallonie | Surveillance, CELEX/CORTEX et fermetures temporaires |
+| Crète, juillet 2025 | https://data.jrc.ec.europa.eu/dataset/9d8d35b6-0b6a-5810-bff8-1d6c0a0b0c37 | Message 112 par cellule et évacuation territorialisée |
+| Espagne, été 2025 | https://civil-protection-humanitarian-aid.ec.europa.eu/what/civil-protection/european-civil-protection-pool_en | Routes fermées, évacuations massives et renforts européens |
+| Chios, juin 2025 | https://www.who.int/europe/news-room/photo-stories/item/chios-on-fire--one-photographer-s-view-of-a-growing-health-threat | Fumées, vulnérabilités et ordres d'évacuation |
+
 ## Hiérarchie de confiance
 
 1. Ordre horodaté de l'autorité locale/provinciale ou de BE-Alert pour la zone exacte.

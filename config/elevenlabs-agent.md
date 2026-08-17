@@ -11,8 +11,12 @@ Créé le 17 août 2026 dans le workspace ElevenLabs partagé.
 | Numéro attaché | Aucun |
 | Appels sortants | Aucun |
 | Webhook métier | Aucun |
-| Enregistrement audio | Désactivé |
+| Enregistrement audio | Activé pour les appels de test |
 | Conservation des transcriptions | 30 jours maximum |
+| Knowledge Base | `89AM7w3ggzzZpzmAiiRT` |
+| RAG | Activé, modèle multilingue |
+
+La base ElevenLabs est synchronisée depuis les fichiers locaux `knowledge/base-connaissances.md`, `knowledge/incidents-recents.md`, `docs/sources-officielles.md` et `docs/plan-voicebot.md`. Le document distant porte le nom `Feux de Forêt 1771 — Base officielle et retours d’expérience — 2026.08.17`.
 
 ## Téléphonie à connecter ultérieurement
 

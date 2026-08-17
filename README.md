@@ -22,8 +22,9 @@ La démonstration vocale utilise par défaut l'agent ElevenLabs `Feux de Forêt 
 - Mode : inbound, sans numéro attaché
 - Langues : français, néerlandais, allemand et anglais
 - Téléphonie : le numéro Twilio sera attaché ultérieurement
-- Audio : non enregistré
+- Audio : enregistré pendant les appels de test, avec annonce préalable
 - Transcriptions : conservation maximale configurée à 30 jours
+- Base de connaissances ElevenLabs : document `89AM7w3ggzzZpzmAiiRT`, RAG multilingue activé
 
 ## Contenu
 

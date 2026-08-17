@@ -8,6 +8,7 @@ const start = document.querySelector('.start');
 const stop = document.querySelector('.stop');
 const error = document.querySelector('.error');
 const status = document.querySelector('.status strong');
+const menuButton = document.querySelector('.menu-toggle');
 let conversation = null;
 
 copy.textContent = agentId
@@ -24,6 +25,14 @@ function toggle(open) {
 document.querySelectorAll('.call-trigger').forEach((button) => button.addEventListener('click', () => toggle(true)));
 document.querySelector('.close').addEventListener('click', () => toggle(false));
 document.querySelector('.backdrop').addEventListener('click', () => toggle(false));
+menuButton.addEventListener('click', () => {
+  const open = document.body.classList.toggle('menu-open');
+  menuButton.setAttribute('aria-expanded', String(open));
+});
+document.querySelectorAll('.site-header nav a').forEach((link) => link.addEventListener('click', () => {
+  document.body.classList.remove('menu-open');
+  menuButton.setAttribute('aria-expanded', 'false');
+}));
 
 start.addEventListener('click', async () => {
   error.textContent = '';
