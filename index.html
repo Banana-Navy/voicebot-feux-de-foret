@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Voicebot belge d'information et d'orientation face aux feux de forêt." />
+    <meta name="theme-color" content="#102d24" />
+    <title>Feux de Forêt — Voicebot Belgique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <aside class="emergency"><strong>1771 : information et orientation</strong> · Danger immédiat, feu ou fumée proche ? Appelez le <a href="tel:112">112</a>.</aside>
+    <header>
+      <a class="brand" href="#accueil"><span>▲</span> WILDFIRE VOICE</a>
+      <nav><a href="#mission">Mission</a><a href="#reflexes">Bons réflexes</a><a href="#sources">Sources</a></nav>
+      <button class="call-trigger">Découvrir le 1771</button>
+    </header>
+    <main id="accueil">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Assistant vocal belge · FR · NL · DE · EN</p>
+          <h1>La bonne consigne,<br /><em>au bon moment.</em></h1>
+          <p class="lead">Le 1771 aide la population à prévenir, signaler et traverser un feu de forêt sans se substituer au 112 ni aux autorités.</p>
+          <div class="actions"><button class="primary call-trigger">Découvrir le 1771</button><a href="#reflexes">Voir les consignes officielles</a></div>
+        </div>
+        <div class="signal" aria-label="Triage de sécurité"><span>01</span><strong>Urgence détectée</strong><i></i><span>02</span><strong>Consigne 112</strong><i></i><span>03</span><strong>Orientation sûre</strong></div>
+      </section>
+      <section class="statement" id="mission"><p class="eyebrow">1771 · Une interface simple sous pression</p><h2>Le bot commence par savoir où vous êtes.</h2><p>Dans la forêt, il faut s'éloigner immédiatement. Chez soi à proximité, il faut fermer portes et fenêtres et attendre l'instruction officielle avant d'évacuer. Cette distinction structure toute la conversation.</p></section>
+      <section id="reflexes" class="cards">
+        <article><b>Dans la nature</b><h3>Éloignez-vous du feu et de la fumée.</h3><p>Suivez les chemins existants vers une route, une grande zone pavée ou une agglomération. Appelez le 112 avec des repères précis.</p></article>
+        <article><b>À proximité</b><h3>N'évacuez pas spontanément.</h3><p>Fermez portes, fenêtres et ventilation extérieure. Suivez BE-Alert et les autorités locales, sauf danger direct.</p></article>
+        <article><b>Fumées</b><h3>Restez hors de toute fumée.</h3><p>Protégez en priorité enfants, personnes âgées, enceintes et personnes cardiaques ou respiratoires. Symptôme grave : 112.</p></article>
+        <article><b>Prévention</b><h3>Évitez toute étincelle.</h3><p>Pas de feu, mégot, barbecue ou stationnement dans les hautes herbes. Respectez les codes de risque et interdictions locales.</p></article>
+      </section>
+      <section class="sources" id="sources"><div><p class="eyebrow">Connaissance contrôlée</p><h2>Fondé sur des sources officielles.</h2></div><p>Centre de Crise national, SPF Intérieur 112, SPW Environnement, Vlaanderen / Agentschap Natuur en Bos, OMS Europe et mécanismes européens. Toute consigne locale doit être sourcée et horodatée.</p></section>
+    </main>
+    <footer><span>1771 · Voicebot d'information · Banana Navy</span><span>Urgence : 112 · Belgique · 2026</span></footer>
+    <div class="modal" aria-hidden="true"><button class="backdrop" aria-label="Fermer"></button><section role="dialog" aria-modal="true" aria-labelledby="dialog-title"><button class="close" aria-label="Fermer">×</button><p class="eyebrow">1771 · Démonstration sécurisée</p><h2 id="dialog-title">Parlez au voicebot</h2><p class="modal-copy"></p><div class="status"><span></span><strong>Prêt</strong><small>Le microphone n'est activé qu'après votre accord.</small></div><button class="primary start">Démarrer</button><button class="stop" hidden>Terminer</button><p class="error" role="alert"></p><p class="fineprint">1771 informe et oriente. Ce prototype ne contacte pas automatiquement les secours. En cas de danger, fermez cette fenêtre et composez le 112.</p></section></div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
