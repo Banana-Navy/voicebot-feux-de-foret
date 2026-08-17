@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Voicebot belge d'information et d'orientation face aux feux de forêt." />
-    <meta name="theme-color" content="#102d24" />
+    <meta name="theme-color" content="#fff5e8" />
     <title>Feux de Forêt — Voicebot Belgique</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,19 +13,21 @@
   <body>
     <aside class="emergency"><strong>Appelez le 1771 pour vos questions</strong> · Danger immédiat, feu ou fumée proche ? Appelez le <a href="tel:112">112</a>.</aside>
     <header>
-      <a class="brand" href="#accueil"><span>▲</span> WILDFIRE VOICE</a>
-      <nav><a href="#mission">Mission</a><a href="#reflexes">Bons réflexes</a><a href="#sources">Sources</a></nav>
-      <button class="call-trigger">Découvrir le 1771</button>
+      <a class="brand" href="#accueil" aria-label="Voicebot Feux de Forêt — accueil"><span class="brand-badge">♨</span><span class="brand-copy">VOICEBOT<br><b>FEUX DE FORÊT</b></span></a>
+      <nav><a class="active" href="#accueil">Accueil</a><a href="#reflexes">Fonctionnalités</a><a href="#mission">Comment ça fonctionne</a><a href="#publics">Pour qui ?</a><a href="#sources">FAQ</a></nav>
+      <a class="header-call" href="tel:1771"><span>☎</span> Appeler le bot</a>
     </header>
     <main id="accueil">
       <section class="hero">
-        <div>
-          <p class="eyebrow">Voicebot inbound belge · FR · NL · DE · EN</p>
-          <h1>Une question ?<br /><em>Appelez le 1771.</em></h1>
-          <p class="lead">La population appelle le 1771 et pose librement ses questions sur les feux de forêt : prévention, fumées, évacuation, personnes vulnérables, animaux ou retour à la normale.</p>
-          <div class="actions"><a class="primary" href="tel:1771">Appeler le 1771</a><button class="call-trigger">Tester dans le navigateur</button></div>
+        <div class="hero-copy-block">
+          <p class="eyebrow">Voicebot inbound belge · 1771</p>
+          <h1>Une voix qui<br>informe, oriente<br>et protège face aux<br><em>feux de forêt</em></h1>
+          <p class="lead">Notre assistant vocal répond aux questions de la population, diffuse les consignes officielles et oriente vers les secours lorsqu'une urgence est détectée.</p>
+          <div class="hero-proofs" aria-label="Avantages clés"><div><span>☎</span><b>Réponses<br>instantanées</b></div><div><span>◆</span><b>Informations<br>officielles</b></div><div><span>●</span><b>Consignes<br>adaptées</b></div></div>
+          <div class="actions"><a class="primary" href="tel:1771"><span>☎</span> Appeler le bot Feux de Forêt <b>→</b></a><button class="text-action call-trigger">Tester dans le navigateur <span>→</span></button></div>
         </div>
-        <div class="signal" aria-label="Triage de sécurité"><span>01</span><strong>Urgence détectée</strong><i></i><span>02</span><strong>Consigne 112</strong><i></i><span>03</span><strong>Orientation sûre</strong></div>
+        <div class="hero-art" role="img" aria-label="Illustration low-poly d'un feu de forêt, d'une tour de guet et d'un véhicule d'intervention"></div>
+        <div class="audiences" id="publics"><div><span>♟</span><p><b>Pour les citoyens</b><small>Des réponses claires et officielles à tout moment</small></p></div><div><span>▣</span><p><b>Pour les collectivités</b><small>Un relais vocal fiable pour informer et rassurer</small></p></div><div><span>♨</span><p><b>Prévention et réactivité</b><small>Des consignes adaptées pour limiter les risques</small></p></div><div><span>◆</span><p><b>Données sécurisées</b><small>Confidentialité et conformité RGPD</small></p></div></div>
       </section>
       <section class="statement" id="mission"><p class="eyebrow">Un service inbound, disponible à la demande</p><h2>Vous posez la question. Le 1771 vous répond.</h2><p>Pas de menu complexe : l'appelant parle naturellement et peut poser des questions de suivi. Le bot répond depuis des sources officielles et vérifie en permanence si la situation nécessite plutôt le 112.</p></section>
       <section id="reflexes" class="cards">
