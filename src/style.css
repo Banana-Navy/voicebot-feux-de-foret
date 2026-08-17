@@ -86,10 +86,22 @@
 }
 
 @media(max-width:699px) and (prefers-reduced-motion:no-preference){
-  .motion-ready .architecture-flow{gap:24px}
-  .motion-ready .architecture-flow article{position:sticky;top:var(--stack-top,92px);box-shadow:0 18px 32px rgba(0,0,0,.24)}
-  .motion-ready .operation-visuals figure:nth-child(odd).is-visible{transform:rotate(-.7deg)}
-  .motion-ready .operation-visuals figure:nth-child(even).is-visible{transform:rotate(.7deg)}
+  .motion-ready .bento-stack{gap:24px}
+  .motion-ready .bento-stack>.bento-card{position:sticky;top:var(--stack-top,92px);z-index:calc(10 + var(--bento-index));transform-origin:center top;will-change:transform,opacity;transition:opacity .28s ease,transform .18s linear,box-shadow .28s ease}
+  .motion-ready .bento-stack>.bento-card.reveal{opacity:0;transform:translate3d(0,var(--stack-offset,28px),0) scale(var(--stack-scale,.965))}
+  .motion-ready .bento-stack>.bento-card.reveal.is-visible{opacity:var(--stack-opacity,1);transform:translate3d(0,var(--stack-offset,0),0) scale(var(--stack-scale,1));box-shadow:0 var(--stack-shadow-y,18px) var(--stack-shadow-blur,38px) rgba(35,27,21,var(--stack-shadow-alpha,.2))}
+}
+
+/* Desktop bento motion: a restrained pointer-following tilt and warm highlight. */
+.bento-card{--tilt-x:0deg;--tilt-y:0deg;--glow-x:50%;--glow-y:50%;position:relative;isolation:isolate}
+.bento-card>*{position:relative;z-index:1}
+.bento-card:before{content:"";position:absolute;z-index:0;inset:0;border-radius:inherit;background:radial-gradient(280px circle at var(--glow-x) var(--glow-y),rgba(255,182,51,.2),transparent 62%);opacity:0;transition:opacity .3s ease;pointer-events:none}
+
+@media(min-width:700px) and (hover:hover) and (prefers-reduced-motion:no-preference){
+  .motion-ready .bento-card.reveal.is-visible{transform:perspective(950px) translate3d(0,0,0) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));transition:transform .16s ease-out,box-shadow .3s ease,border-color .3s ease}
+  .motion-ready .bento-card.reveal.is-visible.is-pointer-active{transform:perspective(950px) translate3d(0,-8px,0) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));box-shadow:0 24px 48px rgba(63,39,25,.18)}
+  .motion-ready .technology .bento-card.reveal.is-visible.is-pointer-active{box-shadow:0 26px 52px rgba(0,0,0,.3),inset 0 0 0 1px rgba(189,33,25,.12)}
+  .bento-card.is-pointer-active:before{opacity:1}
 }
 
 @keyframes hero-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
