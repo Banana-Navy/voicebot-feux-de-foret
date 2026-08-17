@@ -36,7 +36,7 @@
 @media(min-width:700px){.site-header{height:92px}.brand img{width:235px}.header-call{padding:12px 19px}.header-call img{width:25px;height:25px}.hero{min-height:720px}.hero-copy{padding-bottom:90px}.section,.operations,.technology,.sources{padding-top:104px;padding-bottom:104px}}
 
 /* Footer clair : contraste des marques et cohérence avec la palette du site. */
-.footer{background:#e5e7e4;color:var(--coal)}
+.footer{background:#eadbc8;color:var(--coal)}
 .footer-company p,.partner-block p{color:#555c5a}
 .footer-main h3,.partner-block h3{color:var(--red)}
 .footer-main a{color:var(--coal)}
