@@ -19,7 +19,8 @@ Créé le 17 août 2026 dans le workspace ElevenLabs partagé.
 | RAG | Désactivé ; base contrôlée injectée intégralement dans le prompt |
 | Voix par langue | FR `Adrien` — français belge ; NL `Diederik` — flamand belge ; DE `Otto` — allemand natif |
 | Modèle vocal | `eleven_flash_v2_5` |
-| Réglages de la voix d'ouverture | stabilité `0,52` ; similarité `0,82` ; vitesse `0,95` |
+| Réglages de la voix d'ouverture | stabilité `0,68` ; similarité `0,82` ; vitesse `1,02` |
+| Réglages après sélection | FR `0,68 / 0,82 / 1,03` ; NL `0,68 / 0,82 / 1,03` ; DE `0,68 / 0,82 / 1,04` (stabilité / similarité / vitesse) |
 | Prise de tour | `turn_v3`, réactivité normale, délai `7 s`, remplissages désactivés |
 
 La base ElevenLabs est synchronisée uniquement depuis `knowledge/base-connaissances.md`. Les incidents historiques et documents de conception restent dans le dépôt pour la landing page, mais ne sont plus injectés dans les réponses du bot. Le document distant porte le nom `Feux en Milieu Naturel — Base opérationnelle contrôlée — 2026.08.17`.

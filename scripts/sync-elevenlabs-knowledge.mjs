@@ -47,9 +47,9 @@ const presetTemplate = structuredClone(
 );
 if (!presetTemplate?.overrides) throw new Error('Impossible de créer les presets de langue.');
 const localized = {
-  fr: { voiceId: 'IpTJxgMFj1wbxpha4zxm', stability: 0.55, similarity: 0.80, speed: 0.90 },
-  nl: { voiceId: '9kBSa5emtWArU7U0792v', stability: 0.52, similarity: 0.82, speed: 0.95 },
-  de: { voiceId: 'FTNCalFNG5bRnkkaP5Ug', stability: 0.55, similarity: 0.80, speed: 1.05 },
+  fr: { voiceId: 'IpTJxgMFj1wbxpha4zxm', stability: 0.68, similarity: 0.82, speed: 1.03 },
+  nl: { voiceId: '9kBSa5emtWArU7U0792v', stability: 0.68, similarity: 0.82, speed: 1.03 },
+  de: { voiceId: 'FTNCalFNG5bRnkkaP5Ug', stability: 0.68, similarity: 0.82, speed: 1.04 },
 };
 conversation.asr.user_input_audio_format = 'ulaw_8000';
 conversation.asr.keywords = Array.from(new Set([
@@ -62,9 +62,9 @@ conversation.asr.keywords = Array.from(new Set([
 conversation.tts.agent_output_audio_format = 'ulaw_8000';
 conversation.tts.model_id = 'eleven_flash_v2_5';
 conversation.tts.voice_id = '9kBSa5emtWArU7U0792v';
-conversation.tts.stability = 0.52;
+conversation.tts.stability = 0.68;
 conversation.tts.similarity_boost = 0.82;
-conversation.tts.speed = 0.95;
+conversation.tts.speed = 1.02;
 conversation.tts.optimize_streaming_latency = 3;
 conversation.tts.expressive_mode = false;
 conversation.turn.turn_model = 'turn_v3';

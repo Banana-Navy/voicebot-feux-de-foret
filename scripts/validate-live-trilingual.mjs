@@ -22,6 +22,36 @@ const scenarios = {
   },
 };
 
+const fillerPattern = /\b(?:euh|hum+|hmm+|uh+|um+|äh+|ähm+|ehm+)\b/giu;
+
+function fluencyIssues(responses) {
+  const issues = [];
+  for (const response of responses) {
+    const text = response.text.normalize('NFKC').replace(/\s+/g, ' ').trim();
+    const words = text.toLocaleLowerCase().match(/[\p{L}\p{N}’'-]+/gu) ?? [];
+    for (let index = 1; index < words.length; index += 1) {
+      if (words[index].length > 1 && words[index] === words[index - 1]) {
+        issues.push({ event_id: response.event_id, type: 'adjacent_word_repeat', value: words[index] });
+      }
+    }
+    const sentences = text
+      .split(/[.!?]+/u)
+      .map((sentence) => sentence.trim().toLocaleLowerCase())
+      .filter((sentence) => sentence.length >= 12);
+    const seenSentences = new Set();
+    for (const sentence of sentences) {
+      if (seenSentences.has(sentence)) {
+        issues.push({ event_id: response.event_id, type: 'repeated_sentence', value: sentence });
+      }
+      seenSentences.add(sentence);
+    }
+    for (const match of text.matchAll(fillerPattern)) {
+      issues.push({ event_id: response.event_id, type: 'filler', value: match[0] });
+    }
+  }
+  return issues;
+}
+
 async function signedUrl() {
   const response = await fetch(
     `https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=${agentId}`,
@@ -107,7 +137,17 @@ async function run(language, scenario) {
     events,
   };
   await writeFile(resolve(directory, 'session.json'), `${JSON.stringify(session, null, 2)}\n`);
-  return { conversation_id: connection.conversationId, language, responses, audio_events: audioByEvent.size };
+  const languageToolEvents = events
+    .map(({ event }) => event)
+    .filter((event) => event.type === 'agent_tool_response' && event.agent_tool_response?.tool_name === 'language_detection');
+  const issues = fluencyIssues(responses);
+  const quality = {
+    language_tool_calls: languageToolEvents.length,
+    language_tool_succeeded: languageToolEvents.length === 1 && languageToolEvents[0].agent_tool_response?.status === 'success',
+    fluency_issues: issues,
+    passed: languageToolEvents.length === 1 && languageToolEvents[0].agent_tool_response?.status === 'success' && issues.length === 0,
+  };
+  return { conversation_id: connection.conversationId, language, responses, audio_events: audioByEvent.size, quality };
 }
 
 const results = [];
@@ -122,3 +162,4 @@ for (const [language, scenario] of selectedScenarios) {
   results.push(await run(language, scenario));
 }
 console.log(JSON.stringify({ results }, null, 2));
+if (results.some((result) => !result.quality.passed)) process.exitCode = 1;
