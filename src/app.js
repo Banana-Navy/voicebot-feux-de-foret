@@ -1,7 +1,7 @@
 import { Conversation } from '@elevenlabs/client';
 import './style.css';
 
-const agentId = import.meta.env.VITE_ELEVENLABS_AGENT_ID;
+const agentId = import.meta.env.VITE_ELEVENLABS_AGENT_ID || 'agent_2201m07k477kepfsq9p5h8bh4x1g';
 const modal = document.querySelector('.modal');
 const copy = document.querySelector('.modal-copy');
 const start = document.querySelector('.start');

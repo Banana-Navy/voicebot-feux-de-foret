@@ -13,7 +13,17 @@ npm install
 npm run dev
 ```
 
-Pour activer la démonstration vocale, copier `.env.example` vers `.env` et renseigner `VITE_ELEVENLABS_AGENT_ID` avec l'identifiant de l'agent de test validé.
+La démonstration vocale utilise par défaut l'agent ElevenLabs `Feux de Forêt 1771 — Inbound (BE)`. Pour tester une branche ou un autre agent, copier `.env.example` vers `.env` et remplacer `VITE_ELEVENLABS_AGENT_ID`.
+
+## Agent ElevenLabs
+
+- Nom : `Feux de Forêt 1771 — Inbound (BE)`
+- Agent ID : `agent_2201m07k477kepfsq9p5h8bh4x1g`
+- Mode : inbound, sans numéro attaché
+- Langues : français, néerlandais, allemand et anglais
+- Téléphonie : le numéro Twilio sera attaché ultérieurement
+- Audio : non enregistré
+- Transcriptions : conservation maximale configurée à 30 jours
 
 ## Contenu
 
