@@ -38,8 +38,13 @@
 /* Footer clair : contraste des marques et cohérence avec la palette du site. */
 .footer{background:#eadbc8;color:var(--coal)}
 .footer-company p,.partner-block p{color:#555c5a}
+.footer-company p:first-of-type{color:#111;font-weight:600;letter-spacing:.035em}
 .footer-main h3,.partner-block h3{color:var(--red)}
 .footer-main a{color:var(--coal)}
+.footer-main>div:nth-child(2) a{display:flex;align-items:center;gap:8px;width:max-content;font-weight:600;transition:color .25s ease,transform .25s ease}
+.footer-main>div:nth-child(2) a:after{content:"→";color:var(--red);font-weight:800;transition:transform .25s ease}
+.footer-main>div:nth-child(2) a:hover{color:var(--red);transform:translateX(3px)}
+.footer-main>div:nth-child(2) a:hover:after{transform:translateX(4px)}
 .partner-block,.footer-bottom{border-color:rgba(34,40,41,.18)}
 .partner-logos img{height:88px;padding:12px;background:#fff;border:1px solid rgba(34,40,41,.1);border-radius:14px;filter:drop-shadow(0 6px 10px rgba(34,40,41,.08))}
 .footer-bottom{color:#59605d}
